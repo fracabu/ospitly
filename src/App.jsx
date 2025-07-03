@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
-// Aggiungi questo commento per forzare ESLint a ignorare l'errore
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion';
 import { Bars3Icon, CheckCircleIcon, BoltIcon, LockClosedIcon, CurrencyDollarIcon, DocumentTextIcon, SparklesIcon, MegaphoneIcon } from '@heroicons/react/24/solid';
-import './index.css'; // Assicurati che questo import sia presente
+import './index.css';
 
-// ==================================================================
-// --- LOGO CON CLASSE CSS DIRETTA ---
-// Questo componente ora accetta una classe CSS specifica
-// per garantirne la dimensione.
-// ==================================================================
 const OspitlyLogo = ({ cssClass }) => (
   <img 
     src="/ospitly-logo.png" 
     alt="Ospitly Logo" 
-    className={cssClass} // Applichiamo la classe CSS definita in index.css
+    className={cssClass}
   />
 );
 
@@ -40,7 +32,6 @@ function Header() {
     <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <a href="#">
-          {/* ORA USIAMO LA NUOVA CLASSE CSS, IMPOSSIBILE DA IGNORARE */}
           <OspitlyLogo cssClass="logo-header" /> 
         </a>
         
@@ -60,7 +51,9 @@ function Header() {
         </div>
         
         <div className="md:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)}><Bars3Icon className="h-7 w-7 text-gray-800" /></button>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <Bars3Icon className="h-7 w-7 text-gray-800" />
+          </button>
         </div>
       </div>
       
@@ -81,16 +74,9 @@ function Header() {
   );
 }
 
-// ... il resto del file da qui in poi rimane invariato ...
-
 function Hero() {
   return (
-    <motion.section 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="relative bg-white"
-    >
+    <section className="relative bg-white">
       <div className="container mx-auto grid md:grid-cols-2 items-center px-6 py-24 md:py-32">
         <div className="text-center md:text-left">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
@@ -120,21 +106,9 @@ function Hero() {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
-
-const AnimateOnScroll = ({ children, className }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.3 }}
-    transition={{ duration: 0.6, ease: "easeOut" }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
 
 function FeaturesSection() {
     const features = [
@@ -146,19 +120,19 @@ function FeaturesSection() {
     return (
         <section id="features" className="bg-gray-50 py-20">
             <div className="container mx-auto px-6">
-                <AnimateOnScroll className="text-center mb-12">
+                <div className="text-center mb-12">
                      <h2 className="text-3xl font-bold text-gray-900">Creato per host come te</h2>
                      <p className="text-lg text-gray-600 mt-2">Semplice, intuitivo e senza fronzoli.</p>
-                </AnimateOnScroll>
+                </div>
                 <div className="grid gap-8 md:grid-cols-3">
                     {features.map((feature) => (
-                        <AnimateOnScroll key={feature.title} className="text-center p-6 bg-white rounded-xl shadow-md border border-gray-100">
+                        <div key={feature.title} className="text-center p-6 bg-white rounded-xl shadow-md border border-gray-100">
                             <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
                                <feature.icon className="h-8 w-8 text-primary"/>
                             </div>
                             <h3 className="text-xl font-semibold mb-2 text-gray-900">{feature.title}</h3>
                             <p className="text-gray-600">{feature.description}</p>
-                        </AnimateOnScroll>
+                        </div>
                     ))}
                 </div>
             </div>
@@ -170,12 +144,12 @@ function ToolsSection() {
   return (
     <section id="tools" className="bg-white py-20">
       <div className="container mx-auto px-6">
-        <AnimateOnScroll className="text-center mb-12">
+        <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">I Nostri Tool Gratuiti</h2>
             <p className="text-lg text-gray-600 mt-2">Inizia a semplificare il tuo lavoro, oggi stesso.</p>
-        </AnimateOnScroll>
+        </div>
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-          <AnimateOnScroll className="flex flex-col bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+          <div className="flex flex-col bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
             <div className="p-6">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-primary/10 rounded-lg"><CurrencyDollarIcon className="h-6 w-6 text-primary"/></div>
@@ -183,9 +157,11 @@ function ToolsSection() {
               </div>
               <p className="text-gray-600 text-sm mt-1 ml-11">Gratuito, senza login</p>
             </div>
-            <div className="flex-1 border-t border-gray-200 aspect-video"><iframe src="https://tassa-soggiorno-calculator.vercel.app" className="w-full h-full" title="Calcolatore Tassa di Soggiorno" frameBorder="0"/></div>
-          </AnimateOnScroll>
-          <AnimateOnScroll className="flex flex-col justify-between bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+            <div className="flex-1 border-t border-gray-200 aspect-video">
+              <iframe src="https://tassa-soggiorno-calculator.vercel.app" className="w-full h-full" title="Calcolatore Tassa di Soggiorno" frameBorder="0"/>
+            </div>
+          </div>
+          <div className="flex flex-col justify-between bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
             <div>
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-gray-200 rounded-lg"><DocumentTextIcon className="h-6 w-6 text-gray-500"/></div>
@@ -197,8 +173,8 @@ function ToolsSection() {
                 <span className="absolute top-2 right-2 inline-block px-3 py-1 text-xs font-semibold bg-gray-200 rounded-full text-gray-600">In arrivo</span>
               </div>
             </div>
-          </AnimateOnScroll>
-          <AnimateOnScroll className="flex flex-col justify-between bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+          </div>
+          <div className="flex flex-col justify-between bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
             <div>
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-gray-200 rounded-lg"><MegaphoneIcon className="h-6 w-6 text-gray-500"/></div>
@@ -210,7 +186,7 @@ function ToolsSection() {
                 <span className="absolute top-2 right-2 inline-block px-3 py-1 text-xs font-semibold bg-gray-200 rounded-full text-gray-600">In arrivo</span>
               </div>
             </div>
-          </AnimateOnScroll>
+          </div>
         </div>
       </div>
     </section>
@@ -218,22 +194,33 @@ function ToolsSection() {
 }
 
 function LandingServiceSection() {
-    const serviceFeatures = [ "Sito web moderno e personalizzato", "Form di contatto diretto", "Area admin semplice per gestire i messaggi", "Ottimizzato per essere trovato su Google", "Nessuna commissione da pagare a Booking o Airbnb", ];
+    const serviceFeatures = [ 
+      "Sito web moderno e personalizzato", 
+      "Form di contatto diretto", 
+      "Area admin semplice per gestire i messaggi", 
+      "Ottimizzato per essere trovato su Google", 
+      "Nessuna commissione da pagare a Booking o Airbnb" 
+    ];
 
     return (
         <section id="custom-landing" className="bg-gray-50 py-20 overflow-hidden">
             <div className="container mx-auto px-6">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <AnimateOnScroll>
+                    <div>
                         <span className="font-bold text-primary">IL TUO SITO, ZERO COMMISSIONI</span>
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Smetti di pagare commissioni. <br/>Prendi il controllo.</h2>
                         <p className="text-lg text-gray-600 mt-4">Ti creiamo una landing page su misura che converte i visitatori in ospiti. Metti in mostra la tua struttura, gestisci le prenotazioni dirette e costruisci il tuo brand.</p>
                         <ul className="mt-6 space-y-3">
-                            {serviceFeatures.map(feature => ( <li key={feature} className="flex items-start gap-3"> <CheckCircleIcon className="h-6 w-6 text-green-500 flex-shrink-0 mt-0.5" /> <span className="text-gray-700">{feature}</span> </li> ))}
+                            {serviceFeatures.map(feature => ( 
+                              <li key={feature} className="flex items-start gap-3"> 
+                                <CheckCircleIcon className="h-6 w-6 text-green-500 flex-shrink-0 mt-0.5" /> 
+                                <span className="text-gray-700">{feature}</span> 
+                              </li> 
+                            ))}
                         </ul>
                         <a href="#contact" className="mt-8 inline-block px-8 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-primary/90 transition transform hover:-translate-y-1">Richiedi una Consulenza Gratuita</a>
-                    </AnimateOnScroll>
-                    <AnimateOnScroll className="relative">
+                    </div>
+                    <div className="relative">
                         <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-2">
                             <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center p-8">
                                 <div className="w-full text-center">
@@ -245,7 +232,7 @@ function LandingServiceSection() {
                                 </div>
                             </div>
                         </div>
-                    </AnimateOnScroll>
+                    </div>
                 </div>
             </div>
         </section>
@@ -259,7 +246,6 @@ function Footer() {
                 <div className="grid gap-8 md:grid-cols-3">
                     <div className="flex flex-col items-center md:items-start">
                         <a href="#">
-                           {/* LOGO CON DIMENSIONE DEDICATA PER IL FOOTER */}
                            <OspitlyLogo cssClass="logo-footer" />
                         </a>
                         <p className="text-gray-600 mt-2 text-center md:text-left">Semplifichiamo la vita degli host.</p>
