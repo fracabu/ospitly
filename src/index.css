@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Qui puoi inserire stili globali aggiuntivi, ad esempio: */
+
+/* Body di default */
+body {
+  @apply bg-gray-50 text-gray-800 antialiased;
+}
+
+/* Reset margini */
+* {
+  @apply m-0 p-0 box-border;
+}
+.logo-header {
+  height: 180px !important; /* Altezza di 60px, imponente e non ignorabile */
+  width: auto !important;   /* Larghezza automatica per mantenere le proporzioni */
+}
+
+.logo-footer {
+  height: 120px !important; /* Un po' più piccolo nel footer, per equilibrio */
+  width: auto !important;}
