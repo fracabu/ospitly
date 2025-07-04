@@ -77,7 +77,7 @@ function Header() {
 
   return (
     <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-      <div className="container mx-auto flex items-center justify-between px-6 py-4">
+      <div className="container mx-auto flex items-center justify-between px-6">
         <a href="#">
           <OspitlyLogo cssClass="logo-header" /> 
         </a>
@@ -175,6 +175,30 @@ function HeroWithTool() {
             </div>
           </div>
         </div>
+<div className="max-w-6xl mx-auto">
+  <div className="bg-white rounded-2xl shadow-2xl border-2 border-gray-100 overflow-hidden">
+    <div className="bg-gradient-to-r from-primary/10 to-orange-100 px-8 py-6 border-b border-gray-200">
+      <div className="flex items-center gap-4">
+        <div className="p-3 bg-primary/20 rounded-xl">
+          <CurrencyDollarIcon className="h-8 w-8 text-primary" />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900">Anti-Overbooking Checker</h2>
+          <p className="text-gray-600">Controlla in tempo reale la presenza di doppie prenotazioni sulle piattaforme</p>
+        </div>
+      </div>
+    </div>
+    <div className="h-[600px] md:h-[700px]">
+      <iframe 
+        src="https://ospitly-anti-overbooking.vercel.app/" 
+        className="w-full h-full border-0" 
+        title="Anti-Overbooking Checker"
+        allow="clipboard-write"
+      />
+    </div>
+  </div>
+</div>
+
 
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-6">
@@ -1149,9 +1173,13 @@ function OtherToolsSection() {
                 >
                   Richiedi Early Access
                 </button>
+                
               </div>
+ 
             </div>
           </div>
+  
+
 
           <div className="bg-white rounded-xl shadow-xl border-2 border-purple-200 overflow-hidden hover:shadow-2xl transition-all duration-300">
             <div className="bg-gradient-to-r from-purple-500 to-indigo-500 p-6 text-white">
