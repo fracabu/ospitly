@@ -9,14 +9,6 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Calcolatore Tasse -->
-  <url>
-    <loc>https://www.ospitly.it/#calculator</loc>
-    <lastmod>2025-07-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
   <!-- Guide -->
   <url>
     <loc>https://www.ospitly.it/guida/tassa-soggiorno-2025</loc>
@@ -35,22 +27,6 @@
     <lastmod>2025-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <!-- Altri Tool -->
-  <url>
-    <loc>https://www.ospitly.it/#tools</loc>
-    <lastmod>2025-07-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Siti Web per Host -->
-  <url>
-    <loc>https://www.ospitly.it/#custom-landing</loc>
-    <lastmod>2025-07-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 
 </urlset>
