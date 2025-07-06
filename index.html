@@ -2,33 +2,81 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <!-- Responsivo -->
+    <!-- Viewport ottimizzato -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SEO e descrizione -->
-    <meta
-      name="description"
-      content="Ospitly — Calcolo della Tassa di Soggiorno per host. Carica il file prenotazioni e ottieni subito il totale dovuto."
-    />
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" />
-
-    <!-- ============================================= -->
-    <!-- === AGGIUNGI QUESTI LINK PER IL FONT INTER === -->
-    <!-- ============================================= -->
+    
+    <!-- SEO Meta Tags Principali -->
+    <title>Ospitly · Calcolo Tassa di Soggiorno e Automazione per B&B</title>
+    <meta name="description" content="Calcolatore gratuito tassa di soggiorno per B&B e case vacanza. Automatizza AlloggiatiWeb, ISTAT C/59 e compliance normative. Risparmia tempo e evita sanzioni." />
+    <meta name="keywords" content="tassa soggiorno, calcolatore, B&B, case vacanza, AlloggiatiWeb, ISTAT C59, automazione, ospiti, prenotazioni" />
+    <meta name="author" content="Ospitly" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ospitly.it/" />
+    <meta property="og:title" content="Ospitly · Calcolo Tassa di Soggiorno per B&B e Case Vacanza" />
+    <meta property="og:description" content="Tool gratuito per calcolare la tassa di soggiorno. Carica il CSV delle prenotazioni e ottieni tutti i calcoli in 30 secondi. Per B&B, case vacanza e agriturismi." />
+    <meta property="og:image" content="https://www.ospitly.it/og-image.jpg" />
+    <meta property="og:site_name" content="Ospitly" />
+    <meta property="og:locale" content="it_IT" />
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.ospitly.it/" />
+    <meta property="twitter:title" content="Ospitly · Calcolo Tassa di Soggiorno per B&B" />
+    <meta property="twitter:description" content="Tool gratuito per calcolare la tassa di soggiorno. Carica il CSV e ottieni tutti i calcoli in 30 secondi." />
+    <meta property="twitter:image" content="https://www.ospitly.it/twitter-image.jpg" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.ospitly.it/" />
+    
+    <!-- Favicon ottimizzato -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Ospitly",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.ospitly.it",
+      "description": "Software per il calcolo automatico della tassa di soggiorno e automazione compliance per B&B e case vacanza",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Ospitly",
+        "url": "https://www.ospitly.it"
+      }
+    }
+    </script>
+    
+    <!-- Preconnect per performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     
-    <title>Ospitly · Calcolo Tassa di Soggiorno</title>
+    <!-- Google Analytics (sostituisci con il tuo ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
   </head>
-  <!-- Body con classi Tailwind base -->
   <body class="bg-gray-50 text-gray-800 antialiased">
-    <!-- Qui React monterà la tua App -->
-    <div
-      id="root"
-      class="flex flex-col min-h-screen font-sans"
-    ></div>
-    <!-- Script di Vite -->
+    <div id="root" class="flex flex-col min-h-screen font-sans"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

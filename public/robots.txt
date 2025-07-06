@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.ospitly.it/sitemap.xml
+
+# Blocca eventuali cartelle admin (se presenti)
+Disallow: /admin/
+Disallow: /api/
