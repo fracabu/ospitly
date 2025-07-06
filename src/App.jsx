@@ -90,14 +90,14 @@ function Header() {
           <a href="#contact" className="text-gray-600 hover:text-primary transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>Contatti</a>
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        {/* <div className="hidden md:flex items-center gap-4">
           <a href="/login" className="font-semibold text-gray-600 hover:text-primary transition-colors">
             Accedi
           </a>
           <button onClick={() => document.getElementById('custom-landing')?.scrollIntoView({ behavior: 'smooth' })} className="px-5 py-2 bg-primary text-white font-semibold rounded-lg shadow-sm hover:brightness-105 transition cursor-pointer">
             Crea il tuo Sito
           </button>
-        </div>
+        </div> */}
         
         <div className="md:hidden">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -1374,7 +1374,7 @@ function LandingServiceSection() {
                               </li> 
                             ))}
                         </ul>
-                        <button onClick={() => window.open('mailto:info@ospitly.com?subject=Richiesta Preventivo Sito Web&body=Ciao! Sono interessato a creare un sito web per la mia struttura ricettiva.%0A%0AInformazioni sulla mia struttura:%0A- Nome:%0A- Tipologia (B%26B, casa vacanza, hotel):%0A- Numero camere/posti letto:%0A- Località:%0A- Sito web attuale (se presente):%0A%0AGrazie!', '_blank')} className="mt-8 inline-block px-8 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-primary/90 transition transform hover:-translate-y-1 cursor-pointer">Richiedi Preventivo Gratuito</button>
+                        <a href="mailto:info@ospitly.it?subject=Richiesta Preventivo Sito Web&body=Ciao! Sono interessato a creare un sito web per la mia struttura ricettiva.%0A%0AInformazioni sulla mia struttura:%0A- Nome:%0A- Tipologia (B%26B, casa vacanza, hotel):%0A- Numero camere/posti letto:%0A- Località:%0A- Sito web attuale (se presente):%0A%0AGrazie!" className="mt-8 inline-block px-8 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-primary/90 transition transform hover:-translate-y-1 cursor-pointer">Richiedi Preventivo Gratuito</a>
                     </div>
                     <div className="relative">
                         <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-2">
