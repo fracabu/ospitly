@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Bars3Icon, CheckCircleIcon, BoltIcon, LockClosedIcon, CurrencyDollarIcon, DocumentTextIcon, SparklesIcon, MegaphoneIcon, BookOpenIcon, ClockIcon, CalendarDaysIcon, ShieldCheckIcon, LightBulbIcon, ChatBubbleLeftRightIcon, ExclamationTriangleIcon, EyeIcon, BellIcon, XMarkIcon, ArrowLeftIcon } from '@heroicons/react/24/solid';
 import './index.css';
@@ -373,7 +374,7 @@ const GUIDE_CONTENT = {
         <div className="bg-primary/10 p-6 rounded-lg">
           <h3 className="text-lg font-semibold text-primary mb-3">💡 Hai bisogno di aiuto?</h3>
           <p className="text-gray-700">
-            Contattaci per supporto nella richiesta del CIN: <a href="mailto:info@ospitly.com" className="text-primary underline">info@ospitly.com</a>
+            Contattaci per supporto nella richiesta del CIN: <a href="mailto:info@ospitly.it" className="text-primary underline">info@ospitly.it</a>
           </p>
         </div>
       </div>
@@ -1048,13 +1049,13 @@ function GuidesSection({ onGuideClick }) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <button 
-              onClick={() => window.open('mailto:info@ospitly.com?subject=Suggerimento Guida&body=Ciao! Vorrei suggerire una guida su:%0A%0A[Scrivi qui il tuo suggerimento]%0A%0AGrazie!', '_blank')}
+              onClick={() => window.open('mailto:info@ospitly.it?subject=Suggerimento Guida&body=Ciao! Vorrei suggerire una guida su:%0A%0A[Scrivi qui il tuo suggerimento]%0A%0AGrazie!', '_blank')}
               className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition cursor-pointer"
             >
               Suggerisci una Guida
             </button>
             <button 
-              onClick={() => window.open('mailto:info@ospitly.com?subject=Domanda&body=Ciao! Ho una domanda:%0A%0A[Scrivi qui la tua domanda]%0A%0AGrazie!', '_blank')}
+              onClick={() => window.open('mailto:info@ospitly.it?subject=Domanda&body=Ciao! Ho una domanda:%0A%0A[Scrivi qui la tua domanda]%0A%0AGrazie!', '_blank')}
               className="px-6 py-3 bg-white text-gray-700 font-semibold rounded-lg border border-gray-300 hover:bg-gray-50 transition cursor-pointer"
             >
               Fai una Domanda
@@ -1419,7 +1420,7 @@ function Footer() {
                     <div className="text-center md:text-right">
                         <h4 className="font-semibold text-white">Contatti</h4>
                         <p className="mt-4 text-gray-300">Hai domande o suggerimenti?</p>
-                        <a href="mailto:info@ospitly.com" className="text-primary font-semibold hover:underline">info@ospitly.com</a>
+                        <a href="mailto:info@ospitly.it" className="text-primary font-semibold hover:underline">info@ospitly.it</a>
                         <div className="mt-4">
                           <p className="text-sm text-gray-400">Scriviamo entro 24h</p>
                         </div>
