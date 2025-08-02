@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { 
   ShieldCheckIcon, 
   LightBulbIcon, 
@@ -11,20 +12,52 @@ import {
   StarIcon
 } from '@heroicons/react/24/solid';
 
-export default function OtherToolsSection() {
+export default function OtherToolsSection({ showToast }) {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleEmailSubmit = (e) => {
+  const handleEmailSubmit = async (e) => {
     e.preventDefault();
     if (!email || !email.includes('@')) {
-      alert('❌ Inserisci un indirizzo email valido');
+      showToast?.('❌ Inserisci un indirizzo email valido', 'error');
       return;
     }
     
-    setIsSubscribed(true);
-    alert(`🎉 Perfetto ${email}!\n\n✅ Sei stato aggiunto alla lista early access\n📧 Ti contatteremo quando i tool saranno pronti\n🚀 Sarai tra i primi a testare gratuitamente tutti i nuovi strumenti!\n\nGrazie per la fiducia! 💪`);
-    setEmail('');
+    setIsSubmitting(true);
+    
+    try {
+      // Send email to info@ospitly.it
+      await emailjs.send(
+        'service_kj88jdm',
+        'template_wifuco4',
+        {
+          to_email: 'info@ospitly.it',
+          user_email: email,
+          subject: 'Nuova Iscrizione Early Access List',
+          message: `
+Nuova iscrizione alla Early Access List:
+
+Email: ${email}
+Data: ${new Date().toLocaleDateString('it-IT')}
+Tool richiesti: Anti-Overbooking, Analytics & Pricing, Competitor Checker
+
+L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
+          `
+        },
+        'cwovNf-cy5sogmFWn'
+      );
+
+      setIsSubscribed(true);
+      setEmail('');
+      showToast?.('🎉 Perfetto! Sei stato aggiunto alla lista early access. Ti contatteremo quando i tool saranno pronti!', 'success', 6000);
+      
+    } catch (error) {
+      console.error('Error sending early access email:', error);
+      showToast?.('❌ Errore nell\'invio. Riprova o scrivici direttamente a info@ospitly.it', 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -69,10 +102,12 @@ export default function OtherToolsSection() {
                 
                 <button
                   onClick={() => {
-                    if (!isSubscribed) {
-                      setEmail('early-access@example.com');
-                      handleEmailSubmit(new Event('submit'));
-                    }
+                    // Scroll to the email form
+                    document.querySelector('form input[type="email"]')?.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'center'
+                    });
+                    document.querySelector('form input[type="email"]')?.focus();
                   }}
                   className={`w-full px-6 py-3 bg-gradient-to-r ${tool.gradient} text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition-all transform hover:scale-105`}
                 >
@@ -106,10 +141,12 @@ export default function OtherToolsSection() {
               />
               <button 
                 type="submit"
-                disabled={isSubscribed}
+                disabled={isSubscribed || isSubmitting}
                 className={`px-8 py-4 font-semibold rounded-xl transition-all transform hover:scale-105 shadow-lg text-lg ${
                   isSubscribed 
                     ? 'bg-green-500 text-white cursor-not-allowed' 
+                    : isSubmitting
+                    ? 'bg-gray-400 text-white cursor-not-allowed'
                     : 'bg-gradient-to-r from-primary to-orange-400 text-white hover:from-primary/90 hover:to-orange-400/90'
                 }`}
               >
@@ -117,6 +154,11 @@ export default function OtherToolsSection() {
                   <span className="flex items-center gap-2">
                     <CheckCircleIcon className="h-5 w-5" />
                     Iscritto!
+                  </span>
+                ) : isSubmitting ? (
+                  <span className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Invio...
                   </span>
                 ) : (
                   'Iscriviti Gratis'

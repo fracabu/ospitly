@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import OspitlyLogo from '../ui/OspitlyLogo';
+import ContactForm from '../forms/ContactForm';
 
-export default function Footer() {
+export default function Footer({ showToast }) {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId.replace('#', ''))?.scrollIntoView({ 
       behavior: 'smooth',
@@ -17,7 +21,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer id="contact" className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-6 py-12">
         <div className="grid gap-8 md:grid-cols-3">
           {/* Brand Section */}
@@ -66,25 +70,15 @@ export default function Footer() {
           {/* Contact Section */}
           <div className="text-center md:text-right">
             <h4 className="font-semibold text-white text-lg mb-4">Contatti</h4>
-            <div className="space-y-3">
-              <p className="text-gray-300">
-                Hai domande o suggerimenti?
-              </p>
-              <div className="space-y-2">
-                <a 
-                  href="mailto:info@ospitly.it" 
-                  className="text-primary font-semibold hover:text-primary/80 transition-colors text-lg block"
-                >
-                  info@ospitly.it
-                </a>
-                <p className="text-sm text-gray-400">
-                  📧 Rispondiamo entro 24h
-                </p>
-                <p className="text-sm text-gray-400">
-                  💬 Supporto gratuito per tutti i tool
-                </p>
-              </div>
-            </div>
+            <button 
+              onClick={() => setIsContactFormOpen(true)}
+              className="text-primary font-semibold hover:text-primary/80 transition-colors text-lg block mb-2"
+            >
+              info@ospitly.it
+            </button>
+            <p className="text-sm text-gray-400">
+              Supporto gratuito per tutti i tool
+            </p>
           </div>
         </div>
 
@@ -96,15 +90,23 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4 mt-4 md:mt-0 text-sm text-gray-400">
               <span className="flex items-center gap-1">
-                🇮🇹 Made in Italy
+                🇮🇹 Devepoled with ❤️ By Codecraft Studio 
               </span>
-              <span className="flex items-center gap-1">
-                ❤️ Per gli host italiani
-              </span>
+          
             </div>
           </div>
         </div>
       </div>
+      
+      {/* Contact Form Modal */}
+      <ContactForm
+        type="general"
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+        title="Contattaci"
+        description="Scrivici per qualsiasi domanda o richiesta di supporto."
+        showToast={showToast}
+      />
     </footer>
   );
 }

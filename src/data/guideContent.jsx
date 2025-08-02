@@ -83,7 +83,7 @@ export const GUIDE_CONTENT = {
         <div className="bg-primary/10 p-6 rounded-lg">
           <h3 className="text-lg font-semibold text-primary mb-3">💡 Hai bisogno di aiuto?</h3>
           <p className="text-gray-700">
-            Contattaci per supporto nella richiesta del CIN: <a href="mailto:info@ospitly.it" className="text-primary underline">info@ospitly.it</a>
+            Contattaci per supporto nella richiesta del CIN: <button onClick={() => window.dispatchEvent(new CustomEvent('openCinForm'))} className="text-primary underline hover:text-primary/80 transition-colors">info@ospitly.it</button>
           </p>
         </div>
       </div>
@@ -165,7 +165,7 @@ export const GUIDE_CONTENT = {
             <li>2. Carica il file nel nostro calcolatore</li>
             <li>3. Ottieni automaticamente tutti i calcoli in 30 secondi</li>
           </ol>
-          <button onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })} className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition cursor-pointer">
+          <button onClick={() => window.open('https://tassa-soggiorno-calculator.vercel.app', '_blank', 'noopener,noreferrer')} className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition cursor-pointer">
             Prova il Calcolatore Gratuito →
           </button>
         </div>

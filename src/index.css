@@ -20,4 +20,6 @@ body {
 
 .logo-footer {
   height: 100px !important; /* Un po' più piccolo nel footer, per equilibrio */
-  width: auto !important;}
+  width: auto !important;
+  filter: brightness(0) invert(1); /* Inverte i colori per renderlo bianco su sfondo scuro */
+}

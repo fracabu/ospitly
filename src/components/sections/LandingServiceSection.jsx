@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { CheckCircleIcon, GlobeAltIcon, ChartBarIcon } from '@heroicons/react/24/solid';
 import OspitlyLogo from '../ui/OspitlyLogo';
+import ContactForm from '../forms/ContactForm';
 
-export default function LandingServiceSection() {
+export default function LandingServiceSection({ showToast }) {
+  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+  
   const serviceFeatures = [ 
     "Sito web moderno e personalizzato", 
     "Form di contatto diretto", 
@@ -20,9 +24,6 @@ export default function LandingServiceSection() {
     <section id="custom-landing" className="bg-gradient-to-br from-gray-50 to-white py-20 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full text-primary font-semibold mb-4">
-            🌐 Siti Web Personalizzati
-          </div>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Smetti di pagare commissioni.<br />
             <span className="text-primary">Prendi il controllo.</span>
@@ -33,52 +34,44 @@ export default function LandingServiceSection() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
           {/* Content */}
-          <div className="order-2 lg:order-1">
-            <div className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-2xl mb-8 border border-red-200">
-              <h3 className="text-xl font-bold text-red-800 mb-2">💸 Stai perdendo soldi ogni giorno?</h3>
-              <p className="text-red-700">
-                Con 100 notti prenotate all'anno a €100/notte, paghi <strong>€1,500-1,800</strong> di commissioni alle OTA. 
-                Il tuo sito si ripaga in 2-3 mesi!
+          <div className="order-2 lg:order-1 space-y-8">
+            {/* Value Proposition */}
+            <div>
+              <p className="text-lg text-gray-600 mb-6">
+                Smetti di pagare il <strong className="text-primary">15-18%</strong> di commissioni. 
+                Il tuo sito si ripaga in pochi mesi.
               </p>
-            </div>
-
-            {/* Benefits Grid */}
-            <div className="grid md:grid-cols-3 gap-4 mb-8">
-              {benefits.map((benefit) => (
-                <div key={benefit.title} className="bg-white p-4 rounded-xl shadow-md border border-gray-100 text-center hover:shadow-lg transition-shadow">
-                  <benefit.icon className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <h4 className="font-semibold text-gray-900 mb-1">{benefit.title}</h4>
-                  <p className="text-sm text-gray-600">{benefit.description}</p>
+              
+              {/* Key Features - Simplified */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                  <span className="text-gray-700">Sito web personalizzato + form prenotazioni</span>
                 </div>
-              ))}
-            </div>
-
-            {/* Features List */}
-            <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 mb-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">✨ Cosa Include:</h3>
-              <ul className="space-y-3">
-                {serviceFeatures.map(feature => ( 
-                  <li key={feature} className="flex items-start gap-3"> 
-                    <CheckCircleIcon className="h-6 w-6 text-green-500 flex-shrink-0 mt-0.5" /> 
-                    <span className="text-gray-700 font-medium">{feature}</span> 
-                  </li> 
-                ))}
-              </ul>
+                <div className="flex items-center gap-3">
+                  <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                  <span className="text-gray-700">Ottimizzato per Google (SEO incluso)</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                  <span className="text-gray-700">0% commissioni, 100% controllo</span>
+                </div>
+              </div>
             </div>
 
             {/* CTA */}
-            <div className="text-center lg:text-left">
-              <a 
-                href="mailto:info@ospitly.it?subject=Richiesta Preventivo Sito Web&body=Ciao! Sono interessato a creare un sito web per la mia struttura ricettiva.%0A%0AInformazioni sulla mia struttura:%0A- Nome:%0A- Tipologia (B%26B, casa vacanza, hotel):%0A- Numero camere/posti letto:%0A- Località:%0A- Sito web attuale (se presente):%0A%0AGrazie!" 
+            <div>
+              <button 
+                onClick={() => setIsQuoteFormOpen(true)}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-orange-400 text-white font-bold rounded-2xl shadow-xl hover:from-primary/90 hover:to-orange-400/90 transition-all transform hover:-translate-y-1 hover:shadow-2xl text-lg"
               >
                 <GlobeAltIcon className="h-6 w-6" />
                 Richiedi Preventivo Gratuito
-              </a>
+              </button>
               <p className="text-sm text-gray-500 mt-3">
-                💬 Risposta entro 24h | 📞 Consulenza gratuita | 🚀 Online in 7-14 giorni
+                Risposta entro 24h • Online in 7-14 giorni
               </p>
             </div>
           </div>
@@ -133,27 +126,17 @@ export default function LandingServiceSection() {
           </div>
         </div>
 
-        {/* Social Proof */}
-        <div className="mt-16 text-center">
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 max-w-4xl mx-auto">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Perché Scegliere un Sito Personalizzato?</h3>
-            <div className="grid md:grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-3xl font-bold text-green-600 mb-2">0%</div>
-                <p className="text-gray-600">Commissioni vs 15-18% OTA</p>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
-                <p className="text-gray-600">Prenotazioni automatiche</p>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-purple-600 mb-2">100%</div>
-                <p className="text-gray-600">Controllo del tuo brand</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+      
+      {/* Quote Form Modal */}
+      <ContactForm
+        type="website"
+        isOpen={isQuoteFormOpen}
+        onClose={() => setIsQuoteFormOpen(false)}
+        title="Richiedi Preventivo Sito Web"
+        description="Ricevi un preventivo personalizzato per il tuo sito web senza commissioni."
+        showToast={showToast}
+      />
     </section>
   );
 }

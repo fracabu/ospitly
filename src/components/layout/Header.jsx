@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import OspitlyLogo from '../ui/OspitlyLogo';
 
-export default function Header() {
+export default function Header({ currentGuide, onBackToHome }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigation = [
@@ -15,12 +15,24 @@ export default function Header() {
 
   const scrollToSection = (sectionId, closeMenu = false) => {
     if (closeMenu) setIsMenuOpen(false);
-    setTimeout(() => {
-      document.getElementById(sectionId.replace('#', ''))?.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }, closeMenu ? 100 : 0);
+    
+    // If we're in a guide, go back to homepage first
+    if (currentGuide) {
+      onBackToHome();
+      setTimeout(() => {
+        document.getElementById(sectionId.replace('#', ''))?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 200);
+    } else {
+      setTimeout(() => {
+        document.getElementById(sectionId.replace('#', ''))?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, closeMenu ? 100 : 0);
+    }
   };
 
   return (
@@ -30,7 +42,11 @@ export default function Header() {
           href="#" 
           onClick={(e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (currentGuide) {
+              onBackToHome();
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
           }}
           className="flex-shrink-0 hover:opacity-80 transition-opacity"
         >
