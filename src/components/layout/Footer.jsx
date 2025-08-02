@@ -13,17 +13,16 @@ export default function Footer({ showToast }) {
   };
 
   const footerLinks = [
-    { name: 'Tool Gratuiti', href: '#apps' },
+    { name: 'Tool Gratuiti', href: '#tools' },
     { name: 'Guide', href: '#guides' },
-    { name: 'Vantaggi', href: '#features' },
-    { name: 'Tool in Sviluppo', href: '#tools' },
-    { name: 'Siti Web per Host', href: '#custom-landing' }
+    { name: 'Siti Web per Host', href: '#custom-landing' },
+    { name: 'Contatti', href: '#contact' }
   ];
 
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-6 py-12">
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3 items-start">
           {/* Brand Section */}
           <div className="flex flex-col items-center md:items-start">
             <a 
@@ -48,7 +47,7 @@ export default function Footer({ showToast }) {
           </div>
 
           {/* Links Section */}
-          <div className="text-center">
+          <div className="text-center md:text-left">
             <h4 className="font-semibold text-white text-lg mb-4">Link Utili</h4>
             <nav className="space-y-3">
               {footerLinks.map((link) => (
@@ -59,7 +58,7 @@ export default function Footer({ showToast }) {
                     e.preventDefault(); 
                     scrollToSection(link.href);
                   }} 
-                  className="block text-gray-300 hover:text-primary transition-colors hover:translate-x-1 duration-200"
+                  className="block text-gray-300 hover:text-primary transition-colors duration-200"
                 >
                   {link.name}
                 </a>
@@ -68,17 +67,22 @@ export default function Footer({ showToast }) {
           </div>
 
           {/* Contact Section */}
-          <div className="text-center md:text-right">
+          <div className="text-center md:text-left">
             <h4 className="font-semibold text-white text-lg mb-4">Contatti</h4>
-            <button 
-              onClick={() => setIsContactFormOpen(true)}
-              className="text-primary font-semibold hover:text-primary/80 transition-colors text-lg block mb-2"
-            >
-              info@ospitly.it
-            </button>
-            <p className="text-sm text-gray-400">
-              Supporto gratuito per tutti i tool
-            </p>
+            <div className="space-y-3">
+              <button 
+                onClick={() => setIsContactFormOpen(true)}
+                className="text-primary font-semibold hover:text-primary/80 transition-colors text-base block w-full md:w-auto"
+              >
+                📧 info@ospitly.it
+              </button>
+              <p className="text-sm text-gray-400">
+                Supporto gratuito per tutti i tool
+              </p>
+              <p className="text-sm text-gray-400">
+                Risposta entro 24 ore
+              </p>
+            </div>
           </div>
         </div>
 
@@ -90,9 +94,8 @@ export default function Footer({ showToast }) {
             </p>
             <div className="flex items-center gap-4 mt-4 md:mt-0 text-sm text-gray-400">
               <span className="flex items-center gap-1">
-                🇮🇹 Devepoled with ❤️ By Codecraft Studio 
+                🇮🇹 Developed with ❤️ by Codecraft Studio
               </span>
-          
             </div>
           </div>
         </div>

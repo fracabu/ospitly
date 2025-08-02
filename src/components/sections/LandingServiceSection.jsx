@@ -21,14 +21,14 @@ export default function LandingServiceSection({ showToast }) {
   ];
 
   return (
-    <section id="custom-landing" className="bg-gradient-to-br from-gray-50 to-white py-20 overflow-hidden">
+    <section id="custom-landing" className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-20 overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Smetti di pagare commissioni.<br />
             <span className="text-primary">Prendi il controllo.</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Ti creiamo una landing page su misura che converte i visitatori in ospiti. 
             Metti in mostra la tua struttura e costruisci il tuo brand.
           </p>
@@ -39,7 +39,7 @@ export default function LandingServiceSection({ showToast }) {
           <div className="order-2 lg:order-1 space-y-8">
             {/* Value Proposition */}
             <div>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
                 Smetti di pagare il <strong className="text-primary">15-18%</strong> di commissioni. 
                 Il tuo sito si ripaga in pochi mesi.
               </p>
@@ -48,15 +48,15 @@ export default function LandingServiceSection({ showToast }) {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <CheckCircleIcon className="h-5 w-5 text-green-500" />
-                  <span className="text-gray-700">Sito web personalizzato + form prenotazioni</span>
+                  <span className="text-gray-700 dark:text-gray-300">Sito web personalizzato + form prenotazioni</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircleIcon className="h-5 w-5 text-green-500" />
-                  <span className="text-gray-700">Ottimizzato per Google (SEO incluso)</span>
+                  <span className="text-gray-700 dark:text-gray-300">Ottimizzato per Google (SEO incluso)</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircleIcon className="h-5 w-5 text-green-500" />
-                  <span className="text-gray-700">0% commissioni, 100% controllo</span>
+                  <span className="text-gray-700 dark:text-gray-300">0% commissioni, 100% controllo</span>
                 </div>
               </div>
             </div>

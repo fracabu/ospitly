@@ -35,7 +35,7 @@ npm run preview
 
 ### Core Application Structure
 
-- **src/App.jsx**: Main application component with guide viewer state management (36 lines)
+- **src/App.jsx**: Main application component with guide viewer state management (82 lines)
 - **src/main.jsx**: Application entry point with React Router setup and BrowserRouter wrapper
 - **src/pages/CalcolatoreTassa.jsx**: Dedicated page for tax calculator (uses react-helmet-async)
 
@@ -53,11 +53,16 @@ src/
 │   │   ├── GuidesSection.jsx       # Interactive guide browser
 │   │   ├── FeaturesSection.jsx     # Benefits with animations
 │   │   ├── OtherToolsSection.jsx   # Future tools with early access
-│   │   └── LandingServiceSection.jsx # Website creation service
+│   │   ├── LandingServiceSection.jsx # Website creation service
+│   │   ├── ContactSection.jsx      # Contact form integration
+│   │   └── ToolsUnifiedSection.jsx # Unified tools display
 │   ├── guides/
 │   │   └── GuideViewer.jsx     # Full-screen guide reader
+│   ├── forms/
+│   │   └── ContactForm.jsx     # Contact form with EmailJS integration
 │   └── ui/
-│       └── OspitlyLogo.jsx     # Reusable logo component
+│       ├── OspitlyLogo.jsx     # Reusable logo component
+│       └── Toast.jsx           # Toast notification system
 ├── data/
 │   └── guideContent.jsx        # Guide data and content (JSX format)
 └── pages/
@@ -74,11 +79,16 @@ src/
 2. **Tools Integration**:
    - Tourist tax calculator (embedded iframe: `https://tassa-soggiorno-calculator.vercel.app`)
    - Anti-overbooking checker (embedded iframe: `https://ospitly-anti-overbooking.vercel.app/`)
-   - Centralized in `AppsSection.jsx` component
+   - Centralized in `ToolsUnifiedSection.jsx` component
 
 3. **Service Sections**:
    - Landing page creation service for direct bookings
    - Future tools development (pricing analytics, competitor checking, multi-platform pricing)
+
+4. **Contact & Forms**:
+   - EmailJS integration for contact forms (@emailjs/browser 4.4.1)
+   - Toast notification system for user feedback
+   - CIN support form with event-driven opening
 
 ### Styling & Design System
 
@@ -118,6 +128,7 @@ The application contains detailed, current information about:
 - **Conditional Rendering**: Toggle between main landing page and full-screen guide viewer
 - **Props Flow**: Guide selection passed down via `onGuideClick` prop to `GuidesSection`
 - **Navigation**: Back navigation handled via `onBack` callback in `GuideViewer`
+- **Event System**: Custom window events for CIN form opening (`openCinForm`)
 
 ### Component-Based Architecture Benefits
 - **Maintainability**: Each section is now a separate, focused component  
@@ -132,7 +143,7 @@ The application contains detailed, current information about:
 - Implement responsive design with Tailwind breakpoints
 - Follow the established color scheme (primary/secondary) with gradients
 - Include hover states, transforms, and smooth transitions for interactive elements
-- Organize components by function (layout, sections, guides, ui)
+- Organize components by function (layout, sections, guides, ui, forms)
 
 ### Content Management
 - Guide content is stored in `src/data/guideContent.jsx` (centralized)

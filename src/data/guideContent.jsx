@@ -173,6 +173,87 @@ export const GUIDE_CONTENT = {
     )
   },
 
+  'checkin-normative-2025': {
+    title: "Normative Check-in 2025: Cosa Devi Sapere",
+    description: "Registrazione ospiti, documenti richiesti e adempimenti obbligatori per host italiani.",
+    timeRead: "10 min",
+    difficulty: "Intermedio",
+    content: (
+      <div className="space-y-8">
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
+          <h2 className="text-xl font-bold text-blue-800 mb-2">📋 Check-in Legale</h2>
+          <p className="text-blue-700 font-semibold">Adempimenti obbligatori per evitare sanzioni</p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Documenti Obbligatori al Check-in</h2>
+          <div className="bg-white p-6 rounded-xl border border-gray-200">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Per TUTTI gli ospiti (italiani e stranieri):</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li>✅ <strong>Documento d'identità valido</strong> (carta d'identità, patente, passaporto)</li>
+              <li>✅ <strong>Registrazione in Questura</strong> (entro 24h dall'arrivo)</li>
+              <li>✅ <strong>Comunicazione dati</strong> alla Polizia di Stato</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Procedura Step by Step</h2>
+          <div className="space-y-4">
+            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+              <h4 className="font-semibold text-green-800 mb-2">1. All'arrivo dell'ospite</h4>
+              <ul className="text-green-700 space-y-1">
+                <li>• Richiedi documento d'identità</li>
+                <li>• Fotocopia o scansiona il documento</li>
+                <li>• Compila scheda di notifica</li>
+              </ul>
+            </div>
+            
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <h4 className="font-semibold text-blue-800 mb-2">2. Entro 24 ore</h4>
+              <ul className="text-blue-700 space-y-1">
+                <li>• Invia dati alla Questura (online o di persona)</li>
+                <li>• Conserva ricevuta di avvenuta comunicazione</li>
+                <li>• Archivia documenti per controlli</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Sanzioni per Inadempienza</h2>
+          <div className="bg-red-50 p-6 rounded-lg border border-red-200">
+            <h3 className="text-lg font-semibold text-red-800 mb-3">Mancata registrazione ospiti:</h3>
+            <ul className="text-red-700 space-y-2">
+              <li>💰 <strong>Da €160 a €1,100</strong> per ospite non registrato</li>
+              <li>📋 <strong>Segnalazione</strong> alle autorità competenti</li>
+              <li>⚠️ <strong>Possibile chiusura</strong> dell'attività nei casi più gravi</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Strumenti Utili</h2>
+          <div className="bg-gray-50 p-6 rounded-lg">
+            <h3 className="text-lg font-semibold text-gray-800 mb-3">Portali online per registrazione:</h3>
+            <ul className="text-gray-700 space-y-2">
+              <li>🌐 <strong>Alloggiati Web</strong> - Polizia di Stato</li>
+              <li>📱 <strong>App Questura</strong> - Registrazione mobile</li>
+              <li>💻 <strong>Portali regionali</strong> - Varia per regione</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="bg-primary/10 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold text-primary mb-3">💡 Hai bisogno di supporto?</h3>
+          <p className="text-gray-700">
+            Contattaci per assistenza nella gestione delle normative check-in: <button onClick={() => window.dispatchEvent(new CustomEvent('openCinForm'))} className="text-primary underline hover:text-primary/80 transition-colors">info@ospitly.it</button>
+          </p>
+        </div>
+      </div>
+    )
+  },
+
   'overbooking-guida': {
     title: "Overbooking: Come Evitarlo e Gestirlo (Guida Definitiva)",
     description: "1 overbooking = €200-500 di perdita + recensioni negative. Come prevenire il disastro.",

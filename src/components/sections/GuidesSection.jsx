@@ -6,16 +6,16 @@ export default function GuidesSection({ onGuideClick }) {
   const [activeCategory, setActiveCategory] = useState('tasse');
   
   return (
-    <section id="guides" className="bg-gradient-to-br from-gray-50 to-gray-100 py-16 min-h-screen flex items-center">
+    <section id="guides" className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 py-16 min-h-screen flex items-center transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Guide Essenziali
           </h2>
         </div>
 
         {/* Guides Grid - Solo le più importanti */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {[
             {
               title: "CIN Obbligatorio 2025",
@@ -31,14 +31,19 @@ export default function GuidesSection({ onGuideClick }) {
               title: "Evitare Overbooking",
               description: "Come prevenire perdite €200-500.",
               id: 'overbooking-guida'
+            },
+            {
+              title: "Normative Check-in 2025",
+              description: "Registrazione ospiti e documenti obbligatori.",
+              id: 'checkin-normative-2025'
             }
           ].map((guide, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="p-6 text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   {guide.title}
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
                   {guide.description}
                 </p>
                 

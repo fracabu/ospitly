@@ -10,10 +10,10 @@ import { useToast } from './components/ui/Toast';
 import HeroSection from './components/sections/HeroSection';
 import AppsSection from './components/sections/AppsSection';
 import GuidesSection from './components/sections/GuidesSection';
-import FeaturesSection from './components/sections/FeaturesSection';
-import OtherToolsSection from './components/sections/OtherToolsSection';
+import ToolsUnifiedSection from './components/sections/ToolsUnifiedSection';
 import LandingServiceSection from './components/sections/LandingServiceSection';
 import ContactSection from './components/sections/ContactSection';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 export default function App() {
   const [currentGuide, setCurrentGuide] = useState(null);
@@ -49,35 +49,35 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800 font-sans">
-      <Header currentGuide={currentGuide} onBackToHome={handleBackToHome} />
-      {currentGuide ? (
-        <GuideViewer guide={currentGuide} onBack={handleBackToHome} />
-      ) : (
-        <main>
-          <HeroSection />
-          <AppsSection />
-          <GuidesSection onGuideClick={handleGuideClick} />
-          <FeaturesSection />
-          <OtherToolsSection showToast={showToast} />
-          <LandingServiceSection showToast={showToast} />
-          <ContactSection showToast={showToast} />
-        </main>
-      )}
-      <Footer showToast={showToast} />
-      
-      {/* CIN Support Form */}
-      <ContactForm
-        type="cin"
-        isOpen={isCinFormOpen}
-        onClose={() => setIsCinFormOpen(false)}
-        title="Supporto Richiesta CIN"
-        description="Ti aiutiamo con la procedura per richiedere il Codice Identificativo Nazionale."
-        showToast={showToast}
-      />
-      
-      {/* Toast Container */}
-      <ToastContainer />
-    </div>
+    <ThemeProvider>
+      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+        <Header currentGuide={currentGuide} onBackToHome={handleBackToHome} />
+        {currentGuide ? (
+          <GuideViewer guide={currentGuide} onBack={handleBackToHome} />
+        ) : (
+          <main>
+            <HeroSection />
+            <ToolsUnifiedSection showToast={showToast} />
+            <GuidesSection onGuideClick={handleGuideClick} />
+            <LandingServiceSection showToast={showToast} />
+            <ContactSection showToast={showToast} />
+          </main>
+        )}
+        <Footer showToast={showToast} />
+        
+        {/* CIN Support Form */}
+        <ContactForm
+          type="cin"
+          isOpen={isCinFormOpen}
+          onClose={() => setIsCinFormOpen(false)}
+          title="Supporto Richiesta CIN"
+          description="Ti aiutiamo con la procedura per richiedere il Codice Identificativo Nazionale."
+          showToast={showToast}
+        />
+        
+        {/* Toast Container */}
+        <ToastContainer />
+      </div>
+    </ThemeProvider>
   );
 }
