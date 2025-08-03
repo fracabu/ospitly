@@ -3,7 +3,7 @@ export default function OspitlyLogo({ cssClass }) {
     <img 
       src="/ospitly-logo.png" 
       alt="Ospitly Logo" 
-      className={cssClass}
+      className={`${cssClass} dark:brightness-0 dark:invert transition-all duration-300`}
     />
   );
 }

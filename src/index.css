@@ -14,12 +14,14 @@ body {
   @apply m-0 p-0 box-border;
 }
 .logo-header {
-  height: 100px !important; /* Logo ben visibile e prominente */
-  width: auto !important;   /* Larghezza automatica per mantenere le proporzioni */
+  width: 400px !important;
+  height: 150px !important;
+  object-fit: contain !important;
 }
 
 .logo-footer {
-  height: 100px !important; /* Un po' più piccolo nel footer, per equilibrio */
-  width: auto !important;
+  width: 400px !important;
+  height: 150px !important;
+  object-fit: contain !important;
   filter: brightness(0) invert(1); /* Inverte i colori per renderlo bianco su sfondo scuro */
 }
