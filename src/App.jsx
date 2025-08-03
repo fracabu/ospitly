@@ -58,8 +58,8 @@ export default function App() {
           <main>
             <HeroSection />
             <ToolsUnifiedSection showToast={showToast} />
-            <GuidesSection onGuideClick={handleGuideClick} />
             <LandingServiceSection showToast={showToast} />
+            <GuidesSection onGuideClick={handleGuideClick} />
             <ContactSection showToast={showToast} />
           </main>
         )}

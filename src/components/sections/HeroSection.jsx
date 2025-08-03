@@ -27,7 +27,16 @@ export default function HeroSection() {
 
           {/* Single CTA */}
           <button 
-            onClick={() => document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              const element = document.getElementById('tools');
+              if (element) {
+                element.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start',
+                  inline: 'nearest'
+                });
+              }
+            }}
             className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-primary to-orange-400 text-white font-bold rounded-2xl shadow-xl hover:from-primary/90 hover:to-orange-400/90 transition-all transform hover:-translate-y-1 hover:shadow-2xl text-xl"
           >
             Inizia Gratis

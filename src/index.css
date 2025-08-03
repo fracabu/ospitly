@@ -4,6 +4,24 @@
 
 /* Qui puoi inserire stili globali aggiuntivi, ad esempio: */
 
+/* HTML smooth scroll */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px; /* Account for sticky header */
+}
+
+/* Smooth scroll animations */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Enhanced scroll for sections */
+section {
+  scroll-margin-top: 120px;
+}
+
 /* Body di default */
 body {
   @apply bg-gray-50 text-gray-800 antialiased;

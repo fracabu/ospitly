@@ -14,33 +14,39 @@ export default function GuidesSection({ onGuideClick }) {
           </h2>
         </div>
 
-        {/* Guides Grid - Solo le più importanti */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Three Column Layout */}
+        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {[
             {
               title: "CIN Obbligatorio 2025",
-              description: "Sanzioni €800-8000. Come richiederlo.",
-              id: 'cin-2025'
+              description: "Sanzioni €800-8000. Come richiederlo passo per passo.",
+              id: 'cin-2025',
+              badge: "Urgente",
+              badgeColor: "bg-red-500"
             },
             {
               title: "Tassa Soggiorno 2025",
-              description: "Tariffe aggiornate tutte le città.",
-              id: 'tassa-soggiorno-2025'
+              description: "Tariffe aggiornate per tutte le città italiane.",
+              id: 'tassa-soggiorno-2025',
+              badge: "Aggiornato",
+              badgeColor: "bg-green-500"
             },
             {
               title: "Evitare Overbooking",
-              description: "Come prevenire perdite €200-500.",
-              id: 'overbooking-guida'
-            },
-            {
-              title: "Normative Check-in 2025",
-              description: "Registrazione ospiti e documenti obbligatori.",
-              id: 'checkin-normative-2025'
+              description: "Come prevenire perdite di €200-500 per conflitto.",
+              id: 'overbooking-guida',
+              badge: "Essenziale",
+              badgeColor: "bg-blue-500"
             }
           ].map((guide, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
+              {/* Badge */}
+              <div className={`absolute top-4 right-4 ${guide.badgeColor} text-white px-3 py-1 rounded-full text-xs font-semibold`}>
+                {guide.badge}
+              </div>
+              
               <div className="p-6 text-center">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 mt-4">
                   {guide.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -59,6 +65,12 @@ export default function GuidesSection({ onGuideClick }) {
                 >
                   Leggi Gratis
                 </button>
+
+                {/* Time indicator */}
+                <div className="flex items-center justify-center gap-1 mt-3 text-sm text-gray-500 dark:text-gray-400">
+                  <ClockIcon className="h-4 w-4" />
+                  <span>{index === 0 ? '15 min' : index === 1 ? '10 min' : '8 min'}</span>
+                </div>
               </div>
             </div>
           ))}

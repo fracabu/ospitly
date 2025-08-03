@@ -110,133 +110,148 @@ L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
           </h2>
         </div>
 
-        {/* Active Tools */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {activeTools.map((tool) => (
-            <div 
-              key={tool.id}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  {tool.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  {tool.description}
-                </p>
-                
-                <button
-                  onClick={() => handleToolClick(tool.url)}
-                  className={`w-full px-6 py-3 bg-gradient-to-r ${tool.gradient} text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition-all transform hover:scale-105`}
-                >
-                  Apri Gratis
-                </button>
+        {/* Three Column Layout */}
+        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {/* Column 1: Tool Tassa Soggiorno */}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="p-6 text-center">
+              {(() => {
+                const IconComponent = activeTools[0].icon;
+                return (
+                  <div className={`inline-flex p-4 bg-gradient-to-br ${activeTools[0].gradient} rounded-2xl mb-6 shadow-lg`}>
+                    <IconComponent className="h-8 w-8 text-white"/>
+                  </div>
+                );
+              })()}
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                {activeTools[0].title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                {activeTools[0].description}
+              </p>
+              <button
+                onClick={() => handleToolClick(activeTools[0].url)}
+                className={`w-full px-6 py-3 bg-gradient-to-r ${activeTools[0].gradient} text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition-all transform hover:scale-105`}
+              >
+                Apri Gratis
+              </button>
+            </div>
+          </div>
+
+          {/* Column 2: Tool Anti-Overbooking */}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="p-6 text-center">
+              {(() => {
+                const IconComponent = activeTools[1].icon;
+                return (
+                  <div className={`inline-flex p-4 bg-gradient-to-br ${activeTools[1].gradient} rounded-2xl mb-6 shadow-lg`}>
+                    <IconComponent className="h-8 w-8 text-white"/>
+                  </div>
+                );
+              })()}
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                {activeTools[1].title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                {activeTools[1].description}
+              </p>
+              <button
+                onClick={() => handleToolClick(activeTools[1].url)}
+                className={`w-full px-6 py-3 bg-gradient-to-r ${activeTools[1].gradient} text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition-all transform hover:scale-105`}
+              >
+                Apri Gratis
+              </button>
+            </div>
+          </div>
+
+          {/* Column 3: Upcoming Tools */}
+          <div className="space-y-6">
+            {/* Upcoming Tools Card */}
+            <div className="bg-gradient-to-br from-white to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-600">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 text-center">
+                Prossimi Tool
+              </h3>
+              
+              <div className="space-y-3">
+                {upcomingTools.map((tool, index) => (
+                  <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-100 dark:border-gray-600">
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 bg-gradient-to-br ${tool.gradient} rounded-lg opacity-70`}>
+                        <tool.icon className="h-4 w-4 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-sm font-bold text-gray-900 dark:text-white">
+                          {tool.title}
+                        </h4>
+                        <p className="text-xs text-gray-600 dark:text-gray-300">
+                          {tool.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Upcoming Tools Section */}
-        <div className="bg-gradient-to-br from-white to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-600 max-w-4xl mx-auto">
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-              Prossimi Tool
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Strumenti in sviluppo per ottimizzare la gestione della tua struttura
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            {upcomingTools.map((tool, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-600 overflow-hidden">
-                <div className="p-4 text-center">
-                  <div className={`inline-flex p-2 bg-gradient-to-br ${tool.gradient} rounded-xl shadow-lg mb-3 opacity-70`}>
-                    <tool.icon className="h-5 w-5 text-white" />
-                  </div>
-                  <h4 className="text-base font-bold text-gray-900 dark:text-white mb-2">
-                    {tool.title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-xs mb-3">
-                    {tool.description}
-                  </p>
-                  <button
-                    onClick={() => {
-                      document.querySelector('form input[type="email"]')?.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'center'
-                      });
-                      document.querySelector('form input[type="email"]')?.focus();
-                    }}
-                    className={`w-full px-4 py-2 bg-gradient-to-r ${tool.gradient} text-white font-semibold rounded-lg opacity-70 hover:opacity-90 transition-all text-sm`}
-                  >
-                    Richiedi Accesso
+            {/* Early Access Form */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+              <div className="text-center">
+                <BellIcon className="h-8 w-8 text-primary mx-auto mb-3" />
+                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                  Early Access
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+                  Ricevi accesso gratuito ai nuovi tool
+                </p>
+            
+                <form onSubmit={handleEmailSubmit} className="space-y-3">
+                  <input 
+                    type="email" 
+                    placeholder="La tua email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm"
+                    disabled={isSubscribed}
+                    required
+                  />
+                  <button 
+                    type="submit"
+                    disabled={isSubscribed || isSubmitting}
+                    className={`w-full px-4 py-3 font-semibold rounded-xl transition-all shadow-lg text-sm ${
+                      isSubscribed 
+                        ? 'bg-green-500 text-white cursor-not-allowed' 
+                        : isSubmitting
+                        ? 'bg-gray-400 text-white cursor-not-allowed'
+                        : 'bg-gradient-to-r from-primary to-orange-400 text-white hover:from-primary/90 hover:to-orange-400/90'
+                    }`}
+              >
+                    {isSubscribed ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <CheckCircleIcon className="h-4 w-4" />
+                        Iscritto!
+                      </span>
+                    ) : isSubmitting ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Invio...
+                      </span>
+                    ) : (
+                      'Iscriviti Gratis'
+                    )}
                   </button>
+                </form>
+
+                <div className="flex items-center justify-center gap-4 text-xs text-gray-500 dark:text-gray-400 mt-3">
+                  <span className="flex items-center gap-1">
+                    <CheckCircleIcon className="h-3 w-3 text-green-500" />
+                    Gratis
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <CheckCircleIcon className="h-3 w-3 text-green-500" />
+                    No spam
+                  </span>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Early Access Form */}
-          <div className="text-center">
-            <BellIcon className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-              Vuoi essere il primo a testare i nuovi tool?
-            </h4>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Iscriviti alla lista early access e riceverai accesso prioritario gratuito
-            </p>
-            
-            <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto mb-4">
-              <input 
-                type="email" 
-                placeholder="La tua email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-6 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                disabled={isSubscribed}
-                required
-              />
-              <button 
-                type="submit"
-                disabled={isSubscribed || isSubmitting}
-                className={`px-6 py-3 font-semibold rounded-xl transition-all transform hover:scale-105 shadow-lg ${
-                  isSubscribed 
-                    ? 'bg-green-500 text-white cursor-not-allowed' 
-                    : isSubmitting
-                    ? 'bg-gray-400 text-white cursor-not-allowed'
-                    : 'bg-gradient-to-r from-primary to-orange-400 text-white hover:from-primary/90 hover:to-orange-400/90'
-                }`}
-              >
-                {isSubscribed ? (
-                  <span className="flex items-center gap-2">
-                    <CheckCircleIcon className="h-5 w-5" />
-                    Iscritto!
-                  </span>
-                ) : isSubmitting ? (
-                  <span className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Invio...
-                  </span>
-                ) : (
-                  'Iscriviti Gratis'
-                )}
-              </button>
-            </form>
-
-            <div className="flex items-center justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">
-              <span className="flex items-center gap-1">
-                <CheckCircleIcon className="h-4 w-4 text-green-500" />
-                Nessun spam
-              </span>
-              <span className="flex items-center gap-1">
-                <BellIcon className="h-4 w-4 text-blue-500" />
-                Solo aggiornamenti utili
-              </span>
-              <span className="flex items-center gap-1">
-                <StarIcon className="h-4 w-4 text-yellow-500" />
-                Accesso prioritario
-              </span>
             </div>
           </div>
         </div>

@@ -9,8 +9,8 @@ export default function Header({ currentGuide, onBackToHome }) {
 
   const navigation = [
     { name: 'Tool', href: '#tools' },
-    { name: 'Guide', href: '#guides' },
     { name: 'Siti Web', href: '#custom-landing' },
+    { name: 'Guide', href: '#guides' },
     { name: 'Contatti', href: '#contact' }
   ];
 
@@ -21,18 +21,26 @@ export default function Header({ currentGuide, onBackToHome }) {
     if (currentGuide) {
       onBackToHome();
       setTimeout(() => {
-        document.getElementById(sectionId.replace('#', ''))?.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }, 200);
+        const element = document.getElementById(sectionId.replace('#', ''));
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+        }
+      }, 300);
     } else {
       setTimeout(() => {
-        document.getElementById(sectionId.replace('#', ''))?.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }, closeMenu ? 100 : 0);
+        const element = document.getElementById(sectionId.replace('#', ''));
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+        }
+      }, closeMenu ? 150 : 0);
     }
   };
 
