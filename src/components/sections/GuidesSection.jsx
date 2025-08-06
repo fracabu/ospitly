@@ -7,7 +7,7 @@ export default function GuidesSection({ onGuideClick }) {
   
   return (
     <section id="guides" className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 py-16 min-h-screen flex items-center transition-colors duration-300">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Guide Essenziali
@@ -15,7 +15,7 @@ export default function GuidesSection({ onGuideClick }) {
         </div>
 
         {/* Three Column Layout */}
-        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
           {[
             {
               title: "CIN Obbligatorio 2025",
@@ -39,17 +39,17 @@ export default function GuidesSection({ onGuideClick }) {
               badgeColor: "bg-blue-500"
             }
           ].map((guide, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative sm:col-span-1 ${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''}">
               {/* Badge */}
               <div className={`absolute top-4 right-4 ${guide.badgeColor} text-white px-3 py-1 rounded-full text-xs font-semibold`}>
                 {guide.badge}
               </div>
               
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 mt-4">
+              <div className="p-4 sm:p-6 text-center">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 mt-4">
                   {guide.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6">
                   {guide.description}
                 </p>
                 
@@ -61,7 +61,7 @@ export default function GuidesSection({ onGuideClick }) {
                       alert(`📚 Guida "${guide.title}" in preparazione!`);
                     }
                   }}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-primary to-orange-400 text-white font-bold rounded-xl shadow-lg hover:from-primary/90 hover:to-orange-400/90 transition-all transform hover:scale-105"
+                  className="w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-primary to-orange-400 text-white font-bold rounded-xl shadow-lg hover:from-primary/90 hover:to-orange-400/90 transition-all transform hover:scale-105 text-sm sm:text-base"
                 >
                   Leggi Gratis
                 </button>

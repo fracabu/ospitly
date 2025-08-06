@@ -63,6 +63,8 @@ src/
 │   └── ui/
 │       ├── OspitlyLogo.jsx     # Reusable logo component
 │       └── Toast.jsx           # Toast notification system
+├── contexts/
+│   └── ThemeContext.jsx        # Dark/light theme provider with localStorage persistence
 ├── data/
 │   └── guideContent.jsx        # Guide data and content (JSX format)
 └── pages/
@@ -90,6 +92,12 @@ src/
    - Toast notification system for user feedback
    - CIN support form with event-driven opening
 
+5. **Theme System**:
+   - Dark/light mode toggle with ThemeContext provider
+   - localStorage persistence for theme preferences
+   - System preference detection on first load
+   - Tailwind dark mode classes integration
+
 ### Styling & Design System
 
 **Tailwind Configuration**:
@@ -98,6 +106,7 @@ src/
 - Custom font: Inter with sans-serif fallback
 - Content paths: `./index.html`, `./src/**/*.{js,jsx,ts,tsx}`
 - PostCSS integration through Vite config for optimized builds
+- Dark mode: class-based strategy for theme toggling
 
 **Design Patterns**:
 - Gradient backgrounds for hero sections
@@ -129,6 +138,7 @@ The application contains detailed, current information about:
 - **Props Flow**: Guide selection passed down via `onGuideClick` prop to `GuidesSection`
 - **Navigation**: Back navigation handled via `onBack` callback in `GuideViewer`
 - **Event System**: Custom window events for CIN form opening (`openCinForm`)
+- **Theme Management**: Context-based theme provider with `useTheme` hook
 
 ### Component-Based Architecture Benefits
 - **Maintainability**: Each section is now a separate, focused component  
@@ -143,7 +153,8 @@ The application contains detailed, current information about:
 - Implement responsive design with Tailwind breakpoints
 - Follow the established color scheme (primary/secondary) with gradients
 - Include hover states, transforms, and smooth transitions for interactive elements
-- Organize components by function (layout, sections, guides, ui, forms)
+- Organize components by function (layout, sections, guides, ui, forms, contexts)
+- Wrap theme-dependent components with ThemeProvider from `ThemeContext`
 
 ### Content Management
 - Guide content is stored in `src/data/guideContent.jsx` (centralized)
