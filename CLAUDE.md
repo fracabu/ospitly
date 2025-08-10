@@ -80,7 +80,7 @@ src/
 
 2. **Tools Integration**:
    - Tourist tax calculator (embedded iframe: `https://tassa-soggiorno-calculator.vercel.app`)
-   - Anti-overbooking checker (embedded iframe: `https://ospitly-anti-overbooking.vercel.app/`)
+   - Anti-overbooking checker (embedded iframe: `https://overbooking-shield-tool.vercel.app/`)
    - Centralized in `ToolsUnifiedSection.jsx` component
 
 3. **Service Sections**:

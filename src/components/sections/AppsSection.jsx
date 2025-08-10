@@ -38,7 +38,7 @@ export default function AppsSection() {
       gradient: 'from-red-500 to-orange-500',
       bgGradient: 'from-red-50 to-orange-50',
       borderColor: 'border-red-200',
-      url: 'https://ospitly-anti-overbooking.vercel.app/',
+      url: 'https://overbooking-shield-tool.vercel.app/',
       features: [
         'Controllo multi-piattaforma',
         'Alert tempo reale',

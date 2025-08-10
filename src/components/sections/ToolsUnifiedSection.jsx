@@ -33,7 +33,7 @@ export default function ToolsUnifiedSection({ showToast }) {
       description: 'Monitora calendari e rileva conflitti prima che diventino problemi.',
       icon: ShieldCheckIcon,
       gradient: 'from-red-500 to-orange-500',
-      url: 'https://ospitly-anti-overbooking.vercel.app/',
+      url: 'https://overbooking-shield-tool.vercel.app/',
       status: 'beta'
     }
   ];
