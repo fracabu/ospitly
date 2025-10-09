@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import { ClockIcon } from '@heroicons/react/24/solid';
 import { GUIDE_CONTENT } from '../../data/guideContent.jsx';
 import FadeInOnScroll, { FadeInStagger, FadeInStaggerItem } from '../ui/FadeInOnScroll';
 
-export default function GuidesSection({ onGuideClick }) {
+export default function GuidesSection() {
 
   return (
     <section id="guides" className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 py-16 min-h-screen flex items-center transition-colors duration-300">
@@ -28,10 +29,26 @@ export default function GuidesSection({ onGuideClick }) {
               timeRead: "15 min"
             },
             {
+              title: "Dotazioni Sicurezza 2025",
+              description: "Estintori, rilevatori, segnaletica: tutto ciò che serve per legge.",
+              id: 'dotazioni-sicurezza-2025',
+              badge: "Nuovo",
+              badgeColor: "bg-orange-500",
+              timeRead: "18 min"
+            },
+            {
+              title: "Marketing per B&B",
+              description: "Social, gruppi Facebook e strategie per riempire il calendario.",
+              id: 'marketing-bnb-social',
+              badge: "Nuovo",
+              badgeColor: "bg-pink-500",
+              timeRead: "16 min"
+            },
+            {
               title: "Sincronizzare Calendari",
               description: "Guida completa per Google Calendar, Airbnb e Booking.com.",
               id: 'sincronizzazione-calendari',
-              badge: "Nuovo",
+              badge: "Completa",
               badgeColor: "bg-purple-500",
               timeRead: "18 min"
             },
@@ -68,18 +85,22 @@ export default function GuidesSection({ onGuideClick }) {
                 </p>
 
                 <div className="mt-auto space-y-3">
-                  <button
-                    onClick={() => {
-                      if (guide.id && GUIDE_CONTENT[guide.id]) {
-                        onGuideClick(GUIDE_CONTENT[guide.id]);
-                      } else {
-                        alert(`📚 Guida "${guide.title}" in preparazione!`);
-                      }
-                    }}
-                    className="w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-primary to-orange-400 text-white font-bold rounded-xl shadow-lg hover:from-primary/90 hover:to-orange-400/90 transition-all transform hover:scale-105 text-sm sm:text-base"
-                  >
-                    Leggi Gratis
-                  </button>
+                  {GUIDE_CONTENT[guide.id] ? (
+                    <Link
+                      to={`/guide/${guide.id}`}
+                      className="block w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-primary to-orange-400 text-white font-bold rounded-xl shadow-lg hover:from-primary/90 hover:to-orange-400/90 transition-all transform hover:scale-105 text-sm sm:text-base"
+                    >
+                      Leggi Gratis
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => alert(`📚 Guida "${guide.title}" in preparazione!`)}
+                      className="w-full px-4 sm:px-6 py-3 bg-gray-400 text-white font-bold rounded-xl shadow-lg cursor-not-allowed text-sm sm:text-base"
+                      disabled
+                    >
+                      In Preparazione
+                    </button>
+                  )}
 
                   {/* Time indicator */}
                   <div className="flex items-center justify-center gap-1 text-sm text-gray-500 dark:text-gray-400">

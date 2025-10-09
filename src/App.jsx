@@ -1,57 +1,30 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
 
-// Layout Components (always loaded)
+// Layout Components
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
-// Lazy-loaded Components (code splitting)
-const GuideViewer = lazy(() => import('./components/guides/GuideViewer'));
+// Pages
+import HomePage from './pages/HomePage';
+import GuidePage from './pages/GuidePage';
+
+// Lazy-loaded Components
 const ContactForm = lazy(() => import('./components/forms/ContactForm'));
 
 // Regular Components
 import { useToast } from './components/ui/Toast';
 import SEO from './components/ui/SEO';
-import HeroSection from './components/sections/HeroSection';
-import AppsSection from './components/sections/AppsSection';
-import GuidesSection from './components/sections/GuidesSection';
-import ToolsUnifiedSection from './components/sections/ToolsUnifiedSection';
-import LandingServiceSection from './components/sections/LandingServiceSection';
-import ContactSection from './components/sections/ContactSection';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import { webApplicationSchema, organizationSchema } from './data/jsonLdSchemas';
-
-// Loading fallback component
-const LoadingFallback = ({ message = 'Caricamento...' }) => (
-  <div className="flex items-center justify-center p-8 min-h-[200px]">
-    <div className="text-center">
-      <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary mb-3"></div>
-      <p className="text-gray-600 dark:text-gray-400">{message}</p>
-    </div>
-  </div>
-);
+import { GUIDE_CONTENT } from './data/guideContent';
 
 export default function App() {
-  const [currentGuide, setCurrentGuide] = useState(null);
   const [isCinFormOpen, setIsCinFormOpen] = useState(false);
   const { showToast, ToastContainer } = useToast();
-
-  const handleGuideClick = (guide) => {
-    setCurrentGuide(guide);
-    // Scroll to top when opening a guide
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
-  };
-
-  const handleBackToHome = () => {
-    setCurrentGuide(null);
-    // Scroll to top when returning to homepage
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
-  };
+  const location = useLocation();
 
   // Listen for CIN form open event
   useEffect(() => {
@@ -65,30 +38,38 @@ export default function App() {
     };
   }, []);
 
-  // SEO Meta Tags - Dynamic based on current view
+  // SEO Meta Tags - Dynamic based on current route
   const getSEOData = () => {
-    if (currentGuide) {
-      return {
-        title: currentGuide.title,
-        description: currentGuide.description,
-        url: `https://www.ospitly.it/guide/${currentGuide.id}`,
-        jsonLd: {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": currentGuide.title,
-          "description": currentGuide.description,
-          "author": {
-            "@type": "Organization",
-            "name": "Ospitly"
-          },
-          "publisher": organizationSchema,
-          "datePublished": "2025-01-01",
-          "dateModified": new Date().toISOString().split('T')[0],
-        }
-      };
+    const pathParts = location.pathname.split('/');
+
+    // Guide page
+    if (pathParts[1] === 'guide' && pathParts[2]) {
+      const guideSlug = pathParts[2];
+      const guide = GUIDE_CONTENT[guideSlug];
+
+      if (guide) {
+        return {
+          title: guide.title,
+          description: guide.description,
+          url: `https://www.ospitly.it/guide/${guideSlug}`,
+          jsonLd: {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": guide.title,
+            "description": guide.description,
+            "author": {
+              "@type": "Organization",
+              "name": "Ospitly"
+            },
+            "publisher": organizationSchema,
+            "datePublished": "2025-01-01",
+            "dateModified": new Date().toISOString().split('T')[0],
+          }
+        };
+      }
     }
 
-    // Homepage SEO
+    // Homepage SEO (default)
     return {
       title: 'Ospitly · Calcolo Tassa di Soggiorno e Automazione per B&B',
       description: 'Calcolatore gratuito tassa di soggiorno per B&B e case vacanza. Automatizza AlloggiatiWeb, ISTAT C/59 e compliance normative. Risparmia tempo e evita sanzioni.',
@@ -108,24 +89,13 @@ export default function App() {
         jsonLd={seoData.jsonLd}
       />
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
-        <Header currentGuide={currentGuide} onBackToHome={handleBackToHome} />
-        {currentGuide ? (
-          <ErrorBoundary>
-            <Suspense fallback={<LoadingFallback message="Caricamento guida..." />}>
-              <GuideViewer guide={currentGuide} onBack={handleBackToHome} />
-            </Suspense>
-          </ErrorBoundary>
-        ) : (
-          <main>
-            <HeroSection />
-            <ErrorBoundary>
-              <ToolsUnifiedSection showToast={showToast} />
-            </ErrorBoundary>
-            <LandingServiceSection showToast={showToast} />
-            <GuidesSection onGuideClick={handleGuideClick} />
-            <ContactSection showToast={showToast} />
-          </main>
-        )}
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<HomePage showToast={showToast} />} />
+          <Route path="/guide/:slug" element={<GuidePage />} />
+        </Routes>
+
         <Footer showToast={showToast} />
 
         {/* CIN Support Form - Lazy loaded */}

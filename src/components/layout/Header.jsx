@@ -1,11 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from '@heroicons/react/24/solid';
 import OspitlyLogo from '../ui/OspitlyLogo';
 import { useTheme } from '../../contexts/ThemeContext';
 
-export default function Header({ currentGuide, onBackToHome }) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
   const scrollTimeoutRef = useRef(null);
   const pendingScrollRef = useRef(null);
 
@@ -16,6 +19,8 @@ export default function Header({ currentGuide, onBackToHome }) {
     { name: 'Contatti', href: '#contact' }
   ];
 
+  const isOnHomepage = location.pathname === '/';
+
   // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
@@ -25,9 +30,9 @@ export default function Header({ currentGuide, onBackToHome }) {
     };
   }, []);
 
-  // Scroll to element when back on homepage
+  // Scroll to element when on homepage
   useEffect(() => {
-    if (!currentGuide && pendingScrollRef.current) {
+    if (isOnHomepage && pendingScrollRef.current) {
       const sectionId = pendingScrollRef.current;
       pendingScrollRef.current = null;
 
@@ -43,7 +48,7 @@ export default function Header({ currentGuide, onBackToHome }) {
         }
       });
     }
-  }, [currentGuide]);
+  }, [isOnHomepage]);
 
   const scrollToSection = async (sectionId, closeMenu = false) => {
     // Clear any pending scroll timeout
@@ -57,10 +62,10 @@ export default function Header({ currentGuide, onBackToHome }) {
       setIsMenuOpen(false);
     }
 
-    // If we're in a guide, go back to homepage first
-    if (currentGuide) {
+    // If we're not on homepage, navigate there first
+    if (!isOnHomepage) {
       pendingScrollRef.current = sectionId;
-      onBackToHome();
+      navigate('/');
     } else {
       // Small delay only if closing menu to allow animation
       const delay = closeMenu ? 150 : 0;
@@ -93,22 +98,24 @@ export default function Header({ currentGuide, onBackToHome }) {
     }
   };
 
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    if (isOnHomepage) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
     <header className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <a 
-          href="#" 
-          onClick={(e) => {
-            e.preventDefault();
-            if (currentGuide) {
-              onBackToHome();
-            } else {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-          }}
+        <a
+          href="/"
+          onClick={handleLogoClick}
           className="flex-shrink-0 hover:opacity-80 transition-opacity"
         >
-          <OspitlyLogo size="normal" /> 
+          <OspitlyLogo size="normal" />
         </a>
         
         {/* Desktop Navigation */}

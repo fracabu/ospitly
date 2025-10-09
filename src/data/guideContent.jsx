@@ -545,6 +545,408 @@ export const GUIDE_CONTENT = {
         </div>
       </div>
     )
+  },
+
+  'dotazioni-sicurezza-2025': {
+    title: "Dotazioni di Sicurezza Obbligatorie per B&B 2025",
+    description: "Estintori, rilevatori CO/fumo, uscite di emergenza: tutto ciò che serve per legge. Normativa aggiornata 2025.",
+    timeRead: "18 min",
+    difficulty: "Avanzato",
+    content: (
+      <div className="space-y-8">
+        <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
+          <h2 className="text-xl font-bold text-red-800 mb-2">⚠️ Sicurezza = Obbligatoria</h2>
+          <p className="text-red-700 font-semibold">Sanzioni da €1,000 a €10,000 + possibile chiusura struttura</p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Dotazioni Antincendio Obbligatorie</h2>
+
+          <div className="space-y-6">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                🧯 Estintori
+                <span className="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">OBBLIGATORIO</span>
+              </h3>
+              <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                <li>✅ <strong>Tipo</strong>: Estintori a polvere ABC da 6 kg (copertura 13A-89B)</li>
+                <li>✅ <strong>Quantità</strong>: 1 per piano, minimo 1 ogni 200 mq</li>
+                <li>✅ <strong>Posizionamento</strong>: Vicino uscite/scale, altezza 1.20-1.50m</li>
+                <li>✅ <strong>Manutenzione</strong>: Revisione ogni 6 mesi + collaudo ogni 3 anni</li>
+                <li>💰 <strong>Costo</strong>: €30-60 (acquisto) + €25/anno (manutenzione)</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                🔥 Rilevatori di Fumo
+                <span className="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">OBBLIGATORIO</span>
+              </h3>
+              <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                <li>✅ <strong>Dove</strong>: Ogni camera, corridoi, zone comuni</li>
+                <li>✅ <strong>Tipo</strong>: Rilevatori ottici di fumo con allarme acustico 85dB</li>
+                <li>✅ <strong>Alimentazione</strong>: Batteria 9V (durata 1 anno) o cablati 220V</li>
+                <li>✅ <strong>Test</strong>: Mensile con pulsante test</li>
+                <li>💰 <strong>Costo</strong>: €8-25 cadauno</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                💨 Rilevatori di Monossido di Carbonio (CO)
+                <span className="text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded">CONSIGLIATO</span>
+              </h3>
+              <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                <li>⚠️ <strong>Quando obbligatorio</strong>: Presenza di caldaie, stufe, camini, garage collegato</li>
+                <li>✅ <strong>Dove</strong>: Vicino zone notte, locale caldaia</li>
+                <li>✅ <strong>Standard</strong>: Certificazione EN 50291</li>
+                <li>✅ <strong>Manutenzione</strong>: Sostituzione ogni 5-7 anni</li>
+                <li>💰 <strong>Costo</strong>: €20-40 cadauno</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Segnaletica di Sicurezza</h2>
+
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Cartelli Obbligatori</h3>
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+              <li>🚪 <strong>Uscite di emergenza</strong>: Cartelli fotoluminescenti verdi (dimensione minima 21x21 cm)</li>
+              <li>↗️ <strong>Percorsi di esodo</strong>: Frecce direzionali ogni 10 metri lungo il percorso</li>
+              <li>📍 <strong>Planimetria</strong>: Pianta piano con vie di fuga in ogni camera</li>
+              <li>🧯 <strong>Posizione estintori</strong>: Cartello rosso sopra ogni estintore</li>
+              <li>🚭 <strong>Divieto di fumo</strong>: Obbligatorio in tutte le aree chiuse</li>
+              <li>💰 <strong>Costo</strong>: €3-8 per cartello, kit completo €50-100</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Uscite di Emergenza</h2>
+
+          <div className="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-lg border border-yellow-200 dark:border-yellow-800">
+            <h3 className="text-lg font-semibold text-yellow-800 dark:text-yellow-300 mb-3">📏 Requisiti Tecnici</h3>
+            <ul className="space-y-2 text-yellow-700 dark:text-yellow-400">
+              <li>• <strong>Larghezza minima</strong>: 80 cm per porte, 90 cm per corridoi</li>
+              <li>• <strong>Apertura</strong>: Solo verso l'esterno o scorrevoli se >25 persone</li>
+              <li>• <strong>Serrature</strong>: Apribili dall'interno senza chiave (maniglione antipanico se >50 persone)</li>
+              <li>• <strong>Numero</strong>: Almeno 2 vie di fuga indipendenti se capacità >50 persone</li>
+              <li>• <strong>Illuminazione</strong>: Luci di emergenza lungo le vie di fuga</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Altre Dotazioni</h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">🩹 Kit Pronto Soccorso</h3>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
+                <li>✅ Obbligatorio se >5 camere</li>
+                <li>• Bende, cerotti, disinfettante</li>
+                <li>• Guanti monouso, forbici</li>
+                <li>• Termometro</li>
+                <li>💰 €15-30</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">💡 Illuminazione Emergenza</h3>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
+                <li>✅ Obbligatoria lungo vie di fuga</li>
+                <li>• Autonomia minima: 1 ora</li>
+                <li>• Luci LED con batteria backup</li>
+                <li>• Test mensile funzionamento</li>
+                <li>💰 €20-50 per lampada</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Certificazioni e Documenti</h2>
+
+          <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
+            <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-300 mb-4">📋 Cosa Serve</h3>
+            <ul className="space-y-3 text-blue-700 dark:text-blue-400">
+              <li>✅ <strong>CPI (Certificato Prevenzione Incendi)</strong>: Obbligatorio se >25 posti letto o >6 camere</li>
+              <li>✅ <strong>Registro manutenzione</strong>: Estintori, rilevatori, impianti sicurezza</li>
+              <li>✅ <strong>Piano di emergenza</strong>: Procedure evacuazione, numeri emergenza</li>
+              <li>✅ <strong>Formazione personale</strong>: Addetti antincendio e primo soccorso</li>
+              <li>✅ <strong>Assicurazione</strong>: RC struttura con copertura incendio</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Costi Totali Stimati</h2>
+
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <thead className="bg-gray-50 dark:bg-gray-700">
+                <tr>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Dotazione</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Costo Iniziale</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Costo Annuale</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Estintori (2x)</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">€60-120</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">€50/anno</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Rilevatori fumo (4x)</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">€32-100</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">€10/anno</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Rilevatori CO (2x)</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">€40-80</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">-</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Segnaletica completa</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">€50-100</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">-</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Luci emergenza (3x)</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">€60-150</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">€20/anno</td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-700 font-semibold">
+                  <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">TOTALE</td>
+                  <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">€240-550</td>
+                  <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">€80/anno</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">* Costi per B&B di 4 camere. Aumentano proporzionalmente per strutture più grandi.</p>
+        </div>
+
+        <div className="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-400 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold text-green-800 dark:text-green-300 mb-2">✅ Checklist Verifica</h3>
+          <ul className="space-y-2 text-green-700 dark:text-green-400">
+            <li>☐ Estintori installati e revisionati</li>
+            <li>☐ Rilevatori fumo in ogni camera</li>
+            <li>☐ Rilevatori CO se presenti caldaie/stufe</li>
+            <li>☐ Segnaletica uscite emergenza installata</li>
+            <li>☐ Luci emergenza funzionanti</li>
+            <li>☐ Planimetrie evacuazione affisse</li>
+            <li>☐ Registro manutenzioni aggiornato</li>
+            <li>☐ CPI richiesto/ottenuto (se necessario)</li>
+          </ul>
+        </div>
+
+        <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-300 mb-2">📚 Fonti Normative:</h3>
+          <ul className="space-y-2 text-blue-700 dark:text-blue-400 text-sm">
+            <li>• D.M. 3 agosto 2015 - Codice Prevenzione Incendi</li>
+            <li>• D.P.R. 151/2011 - Attività soggette a CPI</li>
+            <li>• Normativa regionale (varia per regione)</li>
+            <li>• EN 50291 - Standard rilevatori CO</li>
+          </ul>
+        </div>
+
+        <div className="bg-primary/10 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold text-primary mb-3">💡 Hai dubbi sulla sicurezza?</h3>
+          <p className="text-gray-700 dark:text-gray-300">
+            Contattaci per una consulenza personalizzata: <button onClick={() => window.dispatchEvent(new CustomEvent('openCinForm'))} className="text-primary underline hover:text-primary/80 transition-colors">info@ospitly.it</button>
+          </p>
+        </div>
+      </div>
+    )
+  },
+
+  'marketing-bnb-social': {
+    title: "Marketing per B&B: Oltre il Sito, Servono Social e Community",
+    description: "SEO ottimizzato non basta: strategia social, gruppi Facebook, Instagram e creazione di movimento per riempire il calendario.",
+    timeRead: "16 min",
+    difficulty: "Intermedio",
+    content: (
+      <div className="space-y-8">
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-6 rounded-lg">
+          <h2 className="text-xl font-bold text-yellow-800 dark:text-yellow-300 mb-2">⚠️ La Verità che Nessuno Dice</h2>
+          <p className="text-yellow-700 dark:text-yellow-400 font-semibold">Un sito perfetto senza traffico = €0 di prenotazioni dirette</p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Il Problema del "Sito Fantasma"</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            Molti host investono migliaia di euro in siti web perfetti con SEO ottimizzato, booking engine integrato,
+            foto professionali... e poi ricevono <strong>zero prenotazioni dirette</strong>.
+          </p>
+
+          <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-lg border border-red-200 dark:border-red-800">
+            <h3 className="text-lg font-semibold text-red-800 dark:text-red-300 mb-3">❌ Errori Comuni</h3>
+            <ul className="space-y-2 text-red-700 dark:text-red-400">
+              <li>• <strong>"Ho il sito, aspetto che le persone lo trovino"</strong> → Il sito è invisibile su Google senza autorità</li>
+              <li>• <strong>"Faccio solo Google Ads"</strong> → CPC alto (€2-8), difficile competere con OTA</li>
+              <li>• <strong>"Basta essere su Booking/Airbnb"</strong> → Commissioni 15-20%, zero ownership clienti</li>
+              <li>• <strong>"I social non servono per B&B"</strong> → 78% dei viaggiatori cerca ispirazione su Instagram</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">La Strategia che Funziona</h2>
+
+          <div className="space-y-6">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                1️⃣ Instagram: La Vetrina Visiva
+                <span className="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded">PRIORITÀ ALTA</span>
+              </h3>
+              <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                <li>📸 <strong>Contenuti</strong>: Foto camere, colazione, dintorni, momenti "dietro le quinte"</li>
+                <li>📅 <strong>Frequenza</strong>: 3-4 post/settimana + 2-3 stories/giorno</li>
+                <li>🎯 <strong>Hashtag</strong>: Mix di locali (#turismoroma) + generici (#bnblife)</li>
+                <li>💬 <strong>Engagement</strong>: Rispondi a TUTTI i commenti entro 2 ore</li>
+                <li>🔗 <strong>Bio</strong>: Link al sito con "Prenota Diretto -15%" ben visibile</li>
+                <li>⏱️ <strong>Tempo</strong>: 30-45 min/giorno</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                2️⃣ Gruppi Facebook: La Miniera d'Oro
+                <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">ROI ALTISSIMO</span>
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">I gruppi Facebook sono il canale più sottovalutato e più redditizio per B&B.</p>
+
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg mb-4">
+                <h4 className="font-semibold text-green-800 dark:text-green-300 mb-2">✅ Gruppi dove essere ATTIVI:</h4>
+                <ul className="space-y-2 text-green-700 dark:text-green-400 text-sm">
+                  <li>• "Viaggiare low cost in Italia" (200k membri)</li>
+                  <li>• "Weekend in Italia - Dove andare?" (150k membri)</li>
+                  <li>• Gruppi locali: "Cosa fare a [tua città]" (40-80k membri)</li>
+                  <li>• Gruppi tematici: "Viaggi con bambini", "Pet-friendly Italia", ecc.</li>
+                  <li>• Host & B&B: Networking con altri host per scambio consigli</li>
+                </ul>
+              </div>
+
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg">
+                <h4 className="font-semibold text-yellow-800 dark:text-yellow-300 mb-2">⚠️ Come Postare (senza essere bannati)</h4>
+                <ul className="space-y-2 text-yellow-700 dark:text-yellow-400 text-sm">
+                  <li>❌ NO spam diretto "Vieni nel mio B&B!"</li>
+                  <li>✅ SÌ risposte utili: "Se cerchi zona X ti consiglio [consigli veri], poi se ti serve alloggio scrivimi in privato"</li>
+                  <li>✅ SÌ contenuti valore: "3 posti segreti a Roma che nessuno conosce" + menzione discreta B&B</li>
+                  <li>✅ SÌ offerte esclusive: "Per membri gruppo: sconto 20% prenotando diretto"</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">3️⃣ Google My Business: Visibilità Locale</h3>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                <li>📍 <strong>Claim della scheda</strong>: Fondamentale per "B&B vicino a me"</li>
+                <li>⭐ <strong>Recensioni</strong>: Chiedi a OGNI ospite recensione su GMB (+ importante di Booking)</li>
+                <li>📸 <strong>Foto</strong>: Almeno 20 foto professionali + 5-10 foto clienti</li>
+                <li>📅 <strong>Post settimanali</strong>: Aggiornamenti, eventi locali, offerte</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">4️⃣ Email Marketing: Clienti Ripetuti</h3>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                <li>📧 <strong>Lista email</strong>: Raccogli email di TUTTI gli ospiti (con consenso)</li>
+                <li>💌 <strong>Newsletter mensile</strong>: Eventi locali, novità B&B, offerte esclusive</li>
+                <li>🎁 <strong>Compleanno/Anniversario</strong>: Email personale con sconto 15%</li>
+                <li>📊 <strong>Tool</strong>: Mailchimp gratuito fino 500 contatti</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Calendario Settimanale (90 min totali)</h2>
+
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <thead className="bg-gray-50 dark:bg-gray-700">
+                <tr>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Giorno</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Attività</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Tempo</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr>
+                  <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white">Lunedì</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Post Instagram + risposte commenti</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">20 min</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white">Martedì</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Gruppi FB: 5 risposte utili</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">15 min</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white">Mercoledì</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Post Instagram + Stories</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">20 min</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white">Giovedì</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Gruppi FB + GMB post</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">15 min</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white">Venerdì</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Post Instagram + Email ospiti partiti</td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">20 min</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Risultati Realistici (dopo 3 mesi)</h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg text-center">
+              <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">15-25%</div>
+              <p className="text-green-800 dark:text-green-300 font-semibold">Prenotazioni Dirette</p>
+              <p className="text-sm text-green-700 dark:text-green-400 mt-2">vs 0-5% senza marketing</p>
+            </div>
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg text-center">
+              <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">€800-2000</div>
+              <p className="text-blue-800 dark:text-blue-300 font-semibold">Risparmio Commissioni</p>
+              <p className="text-sm text-blue-700 dark:text-blue-400 mt-2">al mese (media 4 camere)</p>
+            </div>
+            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg text-center">
+              <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">3-5x</div>
+              <p className="text-purple-800 dark:text-purple-300 font-semibold">ROI Marketing</p>
+              <p className="text-sm text-purple-700 dark:text-purple-400 mt-2">Ogni €1 investito rende €3-5</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-300 mb-2">📚 Risorse Consigliate:</h3>
+          <ul className="space-y-2 text-blue-700 dark:text-blue-400">
+            <li>• Canva: Design grafico facile per post Instagram (gratuito)</li>
+            <li>• Later/Buffer: Programmazione post social (gratuito fino 10 post/mese)</li>
+            <li>• Mailchimp: Email marketing (gratuito fino 500 contatti)</li>
+            <li>• Google My Business: Gestione scheda locale (gratuito)</li>
+          </ul>
+        </div>
+
+        <div className="bg-primary/10 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold text-primary mb-3">🚀 Vuoi una strategia personalizzata?</h3>
+          <p className="text-gray-700 dark:text-gray-300">
+            Contattaci per una consulenza marketing gratuita: <button onClick={() => window.dispatchEvent(new CustomEvent('openCinForm'))} className="text-primary underline hover:text-primary/80 transition-colors">info@ospitly.it</button>
+          </p>
+        </div>
+      </div>
+    )
   }
 };
 
