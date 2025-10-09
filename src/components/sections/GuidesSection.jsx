@@ -42,37 +42,39 @@ export default function GuidesSection({ onGuideClick }) {
             }
           ].map((guide, index) => (
             <FadeInStaggerItem key={index}>
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
+              <div className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
               {/* Badge */}
               <div className={`absolute top-4 right-4 ${guide.badgeColor} text-white px-3 py-1 rounded-full text-xs font-semibold`}>
                 {guide.badge}
               </div>
-              
-              <div className="p-4 sm:p-6 text-center">
+
+              <div className="p-4 sm:p-6 text-center flex flex-col flex-grow">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 mt-4">
                   {guide.title}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 flex-grow">
                   {guide.description}
                 </p>
-                
-                <button 
-                  onClick={() => {
-                    if (guide.id && GUIDE_CONTENT[guide.id]) {
-                      onGuideClick(GUIDE_CONTENT[guide.id]);
-                    } else {
-                      alert(`📚 Guida "${guide.title}" in preparazione!`);
-                    }
-                  }}
-                  className="w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-primary to-orange-400 text-white font-bold rounded-xl shadow-lg hover:from-primary/90 hover:to-orange-400/90 transition-all transform hover:scale-105 text-sm sm:text-base"
-                >
-                  Leggi Gratis
-                </button>
 
-                {/* Time indicator */}
-                <div className="flex items-center justify-center gap-1 mt-3 text-sm text-gray-500 dark:text-gray-400">
-                  <ClockIcon className="h-4 w-4" />
-                  <span>{index === 0 ? '15 min' : index === 1 ? '10 min' : '8 min'}</span>
+                <div className="mt-auto space-y-3">
+                  <button
+                    onClick={() => {
+                      if (guide.id && GUIDE_CONTENT[guide.id]) {
+                        onGuideClick(GUIDE_CONTENT[guide.id]);
+                      } else {
+                        alert(`📚 Guida "${guide.title}" in preparazione!`);
+                      }
+                    }}
+                    className="w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-primary to-orange-400 text-white font-bold rounded-xl shadow-lg hover:from-primary/90 hover:to-orange-400/90 transition-all transform hover:scale-105 text-sm sm:text-base"
+                  >
+                    Leggi Gratis
+                  </button>
+
+                  {/* Time indicator */}
+                  <div className="flex items-center justify-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                    <ClockIcon className="h-4 w-4" />
+                    <span>{index === 0 ? '15 min' : index === 1 ? '10 min' : '8 min'}</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -26,18 +26,18 @@ export default function ContactSection({ showToast }) {
           <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* Column 1: Email Contact */}
           <FadeInStaggerItem>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:bg-white/15 transition-all">
-            <div className="text-center">
+            <div className="h-full flex flex-col bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:bg-white/15 transition-all">
+            <div className="text-center flex flex-col flex-grow">
               <div className="bg-primary/20 p-4 rounded-2xl w-16 h-16 mx-auto mb-6 flex items-center justify-center">
                 <EnvelopeIcon className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Email Diretta</h3>
-              <p className="text-gray-300 mb-6">
+              <p className="text-gray-300 mb-6 flex-grow">
                 Contattaci per qualsiasi domanda sui tool o richiesta di supporto
               </p>
               <button
                 onClick={() => setIsContactFormOpen(true)}
-                className="w-full px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-colors"
+                className="w-full px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-colors mt-auto"
               >
                 Scrivi Messaggio
               </button>
@@ -47,13 +47,13 @@ export default function ContactSection({ showToast }) {
 
           {/* Column 2: Support Info */}
           <FadeInStaggerItem>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-              <div className="text-center">
+            <div className="h-full flex flex-col bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+              <div className="text-center flex flex-col flex-grow">
               <div className="bg-secondary/20 p-4 rounded-2xl w-16 h-16 mx-auto mb-6 flex items-center justify-center">
                 <ChatBubbleLeftRightIcon className="h-8 w-8 text-secondary" />
               </div>
               <h3 className="text-xl font-bold text-white mb-6">Supporto Gratuito</h3>
-              <div className="text-gray-300 space-y-3">
+              <div className="text-gray-300 space-y-3 flex-grow">
                 <div className="flex items-center gap-3">
                   <span className="text-secondary">✅</span>
                   <span>Risposta entro 24h</span>
@@ -77,10 +77,10 @@ export default function ContactSection({ showToast }) {
 
           {/* Column 3: Company Info */}
           <FadeInStaggerItem>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-              <div className="text-center">
+            <div className="h-full flex flex-col bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+              <div className="text-center flex flex-col flex-grow">
               <h3 className="text-xl font-bold text-white mb-6">Ospitly</h3>
-              <div className="space-y-4 text-gray-300">
+              <div className="space-y-4 text-gray-300 flex-grow">
                 <div>
                   <p className="font-semibold text-white">Email diretta:</p>
                   <p className="text-primary">info@ospitly.it</p>
@@ -93,7 +93,7 @@ export default function ContactSection({ showToast }) {
                   <p className="font-semibold text-white">Focus:</p>
                   <p>Normative 2025 sempre aggiornate</p>
                 </div>
-                <div className="pt-4 border-t border-white/20">
+                <div className="pt-4 border-t border-white/20 mt-auto">
                   <p className="text-sm text-gray-400">
                     Semplifichiamo la vita degli host con strumenti gratuiti e affidabili
                   </p>
