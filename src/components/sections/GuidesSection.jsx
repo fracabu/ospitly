@@ -15,30 +15,41 @@ export default function GuidesSection({ onGuideClick }) {
           </div>
         </FadeInOnScroll>
 
-        {/* Three Column Layout */}
+        {/* Responsive Grid Layout */}
         <FadeInStagger staggerDelay={0.15}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
           {[
             {
               title: "CIN Obbligatorio 2025",
               description: "Sanzioni €800-8000. Come richiederlo passo per passo.",
               id: 'cin-2025',
               badge: "Urgente",
-              badgeColor: "bg-red-500"
+              badgeColor: "bg-red-500",
+              timeRead: "15 min"
+            },
+            {
+              title: "Sincronizzare Calendari",
+              description: "Guida completa per Google Calendar, Airbnb e Booking.com.",
+              id: 'sincronizzazione-calendari',
+              badge: "Nuovo",
+              badgeColor: "bg-purple-500",
+              timeRead: "18 min"
             },
             {
               title: "Tassa Soggiorno 2025",
               description: "Tariffe aggiornate per tutte le città italiane.",
               id: 'tassa-soggiorno-2025',
               badge: "Aggiornato",
-              badgeColor: "bg-green-500"
+              badgeColor: "bg-green-500",
+              timeRead: "12 min"
             },
             {
               title: "Evitare Overbooking",
               description: "Come prevenire perdite di €200-500 per conflitto.",
               id: 'overbooking-guida',
               badge: "Essenziale",
-              badgeColor: "bg-blue-500"
+              badgeColor: "bg-blue-500",
+              timeRead: "12 min"
             }
           ].map((guide, index) => (
             <FadeInStaggerItem key={index}>
@@ -73,7 +84,7 @@ export default function GuidesSection({ onGuideClick }) {
                   {/* Time indicator */}
                   <div className="flex items-center justify-center gap-1 text-sm text-gray-500 dark:text-gray-400">
                     <ClockIcon className="h-4 w-4" />
-                    <span>{index === 0 ? '15 min' : index === 1 ? '10 min' : '8 min'}</span>
+                    <span>{guide.timeRead}</span>
                   </div>
                 </div>
               </div>

@@ -12,8 +12,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Styling**: Tailwind CSS 3.4.0 with custom design system (PostCSS integration)
 - **UI Components**: Heroicons 2.2.0, Lucide React 0.525.0, Framer Motion 12.23.0
 - **Routing**: React Router DOM 7.6.3 with BrowserRouter
+- **Forms**: EmailJS Browser 4.4.1 for contact form integration
 - **Build Tool**: Vite 7.0.0 with React plugin
 - **Linting**: ESLint 9.29.0 with React hooks and refresh plugins, modern flat config
+- **Deployment**: Vercel with automatic deploys from main branch
 
 ## Development Commands
 
@@ -35,9 +37,9 @@ npm run preview
 
 ### Core Application Structure
 
-- **src/App.jsx**: Main application component with guide viewer state management (83 lines)
-- **src/main.jsx**: Application entry point with React Router setup and BrowserRouter wrapper (14 lines)
-- **src/pages/CalcolatoreTassa.jsx**: Dedicated page for tax calculator (uses react-helmet-async)
+- **src/App.jsx**: Main application component with guide viewer state management
+- **src/main.jsx**: Application entry point with React Router setup and BrowserRouter wrapper
+- **src/pages/CalcolatoreTassa.jsx**: Dedicated page for tax calculator (uses react-helmet-async for SEO)
 
 ### Component Architecture
 
@@ -236,22 +238,22 @@ Usage pattern in sections:
 
 ## Development Roadmap
 
-See **TODO.md** for the complete prioritized task list. Key items include:
+See **TODO.md** for the complete prioritized task list with detailed implementation examples.
 
-### High Priority (🔴)
-1. ~~**Toast System Bug**~~ - ✅ Fixed: Moved animation from inline `<style jsx>` to index.css
-2. **Error Boundaries** - Add error handling to prevent full app crashes
-3. **Form Validation** - Improve ContactForm with custom validation and error messages
+**Recently Completed**:
+- ✅ Toast System Bug Fix (inline `<style jsx>` moved to index.css)
+- ✅ Error Boundaries (added to prevent app crashes)
+- ✅ Form Validation (custom validation with error feedback in ContactForm)
 
-### Medium Priority (🟡)
-4. **SEO Meta Tags** - Complete Open Graph, Twitter Cards, and JSON-LD schemas
-5. **Scroll Behavior** - Refactor nested setTimeout calls to use refs/async-await
-6. **Lazy Loading** - Implement code splitting for GuideViewer and ContactForm
+**Current Focus**:
+- SEO Meta Tags (Open Graph, Twitter Cards, JSON-LD schemas)
+- Scroll Behavior optimization (refactor nested setTimeout)
+- Code splitting for GuideViewer and ContactForm
 
-### Low Priority (🔵)
-7. **Testing Setup** - Add Vitest + React Testing Library
-8. **Rate Limiting** - Prevent EmailJS spam with cooldown (localStorage)
-9. **Accessibility** - ARIA labels, focus trap, screen reader support
-10. **Image Optimization** - WebP format, lazy loading, preload critical assets
+**Future Priorities**:
+- Testing setup (Vitest + React Testing Library)
+- EmailJS rate limiting (prevent spam)
+- Accessibility improvements (ARIA, focus management)
+- Image optimization (WebP format, lazy loading)
 
-Total estimated time: ~7h 45min
+Refer to TODO.md for time estimates and detailed code examples for each task.

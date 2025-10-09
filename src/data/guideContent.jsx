@@ -273,10 +273,10 @@ export const GUIDE_CONTENT = {
         <div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Cos'è l'Overbooking</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            L'overbooking si verifica quando più ospiti prenotano la stessa proprietà per le stesse date attraverso piattaforme diverse, 
+            L'overbooking si verifica quando più ospiti prenotano la stessa proprietà per le stesse date attraverso piattaforme diverse,
             o quando errori nella gestione dei calendari portano a conflitti di prenotazione.
           </p>
-          
+
           <div className="bg-yellow-50 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-yellow-800 mb-3">⚠️ Cause Principali</h3>
             <ul className="space-y-2 text-yellow-700">
@@ -292,11 +292,255 @@ export const GUIDE_CONTENT = {
         <div className="bg-primary/10 p-6 rounded-lg">
           <h3 className="text-lg font-semibold text-primary mb-3">🤖 Tool in Sviluppo</h3>
           <p className="text-gray-700 mb-4">
-            Stiamo sviluppando un sistema automatico che monitora H24 i tuoi calendari e ti avvisa immediatamente 
+            Stiamo sviluppando un sistema automatico che monitora H24 i tuoi calendari e ti avvisa immediatamente
             se rileva possibili conflitti di prenotazione.
           </p>
           <button onClick={() => document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth' })} className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition cursor-pointer">
             Richiedi Early Access →
+          </button>
+        </div>
+      </div>
+    )
+  },
+
+  'sincronizzazione-calendari': {
+    title: "Sincronizzare Google Calendar con Airbnb e Booking (Guida Completa)",
+    description: "Guida step-by-step per sincronizzare i tuoi calendari e prevenire overbooking. Include istruzioni per tutte le piattaforme.",
+    timeRead: "18 min",
+    difficulty: "Intermedio",
+    content: (
+      <div className="space-y-8">
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
+          <h2 className="text-xl font-bold text-blue-800 mb-2">📅 Perché Sincronizzare i Calendari</h2>
+          <ul className="space-y-1 text-blue-700">
+            <li>• <strong>Previeni overbooking</strong> - Evita doppie prenotazioni e conflitti</li>
+            <li>• <strong>Risparmia tempo</strong> - Aggiorna automaticamente tutti i calendari</li>
+            <li>• <strong>Riduci errori</strong> - Elimina la gestione manuale delle date</li>
+            <li>• <strong>Massimizza occupazione</strong> - Sincronizza disponibilità su tutte le piattaforme</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Come Funziona la Sincronizzazione</h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            La sincronizzazione dei calendari avviene tramite <strong>file iCal (.ics)</strong>, un formato standard che permette
+            lo scambio di informazioni tra diversi sistemi. Ogni piattaforma genera un link iCal univoco che può essere importato
+            nelle altre piattaforme.
+          </p>
+
+          <div className="bg-gray-50 p-6 rounded-lg">
+            <h3 className="text-lg font-semibold text-gray-800 mb-3">🔄 Flusso di Sincronizzazione</h3>
+            <div className="space-y-2 text-gray-700">
+              <p>1. <strong>Esporta</strong> il calendario da Piattaforma A (ottieni link iCal)</p>
+              <p>2. <strong>Importa</strong> il link iCal in Piattaforma B</p>
+              <p>3. <strong>Ripeti</strong> per tutte le combinazioni di piattaforme</p>
+              <p>4. ⚠️ <strong>Importante</strong>: La sincronizzazione è unidirezionale (A → B)</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Sincronizzare Airbnb → Google Calendar</h2>
+
+          <div className="space-y-4">
+            <div className="bg-white p-6 rounded-xl border-2 border-blue-200">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">📤 Step 1: Esportare da Airbnb</h3>
+              <ol className="space-y-3 text-gray-700">
+                <li><strong>1.</strong> Accedi al tuo account Airbnb</li>
+                <li><strong>2.</strong> Vai su <strong>Annunci</strong> → Seleziona il tuo annuncio</li>
+                <li><strong>3.</strong> Clicca su <strong>Calendario</strong></li>
+                <li><strong>4.</strong> In basso, clicca su <strong>"Sincronizza calendario con altre app"</strong></li>
+                <li><strong>5.</strong> Nella sezione <strong>"Esporta calendario"</strong>, copia il link iCal</li>
+              </ol>
+              <div className="mt-4 p-3 bg-yellow-50 rounded border border-yellow-200">
+                <p className="text-sm text-yellow-800">💡 <strong>Nota</strong>: Il link generato è specifico per ogni annuncio. Se hai più proprietà, dovrai ripetere per ognuna.</p>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border-2 border-green-200">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">📥 Step 2: Importare in Google Calendar</h3>
+              <ol className="space-y-3 text-gray-700">
+                <li><strong>1.</strong> Apri <a href="https://calendar.google.com" className="text-primary underline" target="_blank" rel="noopener noreferrer">Google Calendar</a></li>
+                <li><strong>2.</strong> Clicca sull'icona <strong>⚙️ Impostazioni</strong> in alto a destra</li>
+                <li><strong>3.</strong> Nel menu laterale, clicca su <strong>"Aggiungi calendario"</strong> → <strong>"Da URL"</strong></li>
+                <li><strong>4.</strong> Incolla il link iCal copiato da Airbnb</li>
+                <li><strong>5.</strong> Clicca su <strong>"Aggiungi calendario"</strong></li>
+                <li><strong>6.</strong> Dai un nome riconoscibile (es. "Airbnb - Appartamento Centro")</li>
+              </ol>
+              <div className="mt-4 p-3 bg-green-50 rounded border border-green-200">
+                <p className="text-sm text-green-800">✅ <strong>Fatto!</strong> Google Calendar ora si aggiorna automaticamente con le prenotazioni Airbnb (ogni 8-24 ore)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Sincronizzare Booking.com → Google Calendar</h2>
+
+          <div className="space-y-4">
+            <div className="bg-white p-6 rounded-xl border-2 border-blue-200">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">📤 Step 1: Esportare da Booking.com</h3>
+              <ol className="space-y-3 text-gray-700">
+                <li><strong>1.</strong> Accedi al tuo <a href="https://admin.booking.com" className="text-primary underline" target="_blank" rel="noopener noreferrer">Extranet Booking.com</a></li>
+                <li><strong>2.</strong> Vai su <strong>Calendario e prezzi</strong></li>
+                <li><strong>3.</strong> Clicca su <strong>"Sincronizza calendari"</strong></li>
+                <li><strong>4.</strong> Nella sezione <strong>"Esporta il calendario"</strong>, copia il link iCal</li>
+                <li><strong>5.</strong> Salva il link in un posto sicuro</li>
+              </ol>
+              <div className="mt-4 p-3 bg-blue-50 rounded border border-blue-200">
+                <p className="text-sm text-blue-800">📌 <strong>Importante</strong>: Booking.com permette l'esportazione solo del calendario principale, non di singole proprietà.</p>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border-2 border-green-200">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">📥 Step 2: Importare in Google Calendar</h3>
+              <p className="text-gray-700 mb-3">Segui gli stessi passaggi del punto precedente (Airbnb → Google Calendar):</p>
+              <ol className="space-y-2 text-gray-700">
+                <li><strong>1.</strong> Google Calendar → Impostazioni</li>
+                <li><strong>2.</strong> Aggiungi calendario → Da URL</li>
+                <li><strong>3.</strong> Incolla il link iCal di Booking.com</li>
+                <li><strong>4.</strong> Dai un nome (es. "Booking.com - Casa Vacanze")</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Sincronizzare Google Calendar → Airbnb/Booking</h2>
+
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-lg mb-4">
+            <h3 className="text-lg font-semibold text-yellow-800 mb-2">⚠️ Sincronizzazione Bidirezionale</h3>
+            <p className="text-yellow-700">
+              Per evitare overbooking, devi anche importare i calendari esterni (Airbnb, Booking) nelle rispettive piattaforme.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-white p-6 rounded-xl border-2 border-purple-200">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">🔄 Collegare Airbnb ↔ Booking.com</h3>
+
+              <h4 className="font-semibold text-gray-800 mb-2">Airbnb → Booking.com:</h4>
+              <ol className="space-y-2 text-gray-700 mb-4">
+                <li><strong>1.</strong> Copia il link iCal da Airbnb (vedi punto 1)</li>
+                <li><strong>2.</strong> Vai su Booking.com Extranet → <strong>Sincronizza calendari</strong></li>
+                <li><strong>3.</strong> Clicca su <strong>"Importa calendario"</strong></li>
+                <li><strong>4.</strong> Incolla il link iCal di Airbnb</li>
+                <li><strong>5.</strong> Dai un nome e salva</li>
+              </ol>
+
+              <h4 className="font-semibold text-gray-800 mb-2">Booking.com → Airbnb:</h4>
+              <ol className="space-y-2 text-gray-700">
+                <li><strong>1.</strong> Copia il link iCal da Booking.com (vedi punto 2)</li>
+                <li><strong>2.</strong> Vai su Airbnb → <strong>Calendario</strong> → <strong>"Sincronizza calendario"</strong></li>
+                <li><strong>3.</strong> Nella sezione <strong>"Importa calendario"</strong>, incolla il link</li>
+                <li><strong>4.</strong> Dai un nome (es. "Booking.com") e salva</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Problemi Comuni e Soluzioni</h2>
+
+          <div className="space-y-4">
+            <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+              <h4 className="font-semibold text-red-800 mb-2">❌ Problema: Il calendario non si aggiorna</h4>
+              <p className="text-red-700 text-sm mb-2"><strong>Cause possibili:</strong></p>
+              <ul className="text-red-700 text-sm space-y-1 mb-2">
+                <li>• Link iCal errato o scaduto</li>
+                <li>• Ritardo nella sincronizzazione (può richiedere 8-24 ore)</li>
+                <li>• Cache del browser non aggiornata</li>
+              </ul>
+              <p className="text-red-700 text-sm"><strong>Soluzione:</strong> Rigenera il link iCal e re-importalo. Attendi almeno 24 ore prima di verificare.</p>
+            </div>
+
+            <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+              <h4 className="font-semibold text-red-800 mb-2">❌ Problema: Overbooking nonostante la sincronizzazione</h4>
+              <p className="text-red-700 text-sm mb-2"><strong>Cause possibili:</strong></p>
+              <ul className="text-red-700 text-sm space-y-1 mb-2">
+                <li>• Sincronizzazione non bidirezionale (solo A → B, manca B → A)</li>
+                <li>• Ritardo tra piattaforme (fino a 24h)</li>
+                <li>• Prenotazione immediata attivata</li>
+              </ul>
+              <p className="text-red-700 text-sm"><strong>Soluzione:</strong> Verifica che TUTTE le piattaforme siano collegate tra loro. Disattiva "prenotazione immediata" o aggiungi 1 giorno di buffer.</p>
+            </div>
+
+            <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+              <h4 className="font-semibold text-red-800 mb-2">❌ Problema: Date bloccate non sincronizzate</h4>
+              <p className="text-red-700 text-sm mb-2"><strong>Causa:</strong> Le date bloccate manualmente spesso non vengono esportate nei file iCal.</p>
+              <p className="text-red-700 text-sm"><strong>Soluzione:</strong> Blocca le date manualmente su TUTTE le piattaforme, non solo su una.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Best Practices</h2>
+
+          <div className="bg-green-50 p-6 rounded-lg">
+            <h3 className="text-lg font-semibold text-green-800 mb-4">✅ Consigli per una sincronizzazione perfetta:</h3>
+            <ul className="space-y-3 text-green-700">
+              <li><strong>1. Sincronizza TUTTE le combinazioni</strong> - Non solo A → B, ma anche B → A</li>
+              <li><strong>2. Aggiungi un buffer</strong> - 1 giorno prima/dopo ogni prenotazione per check-in/out e pulizie</li>
+              <li><strong>3. Controlla settimanalmente</strong> - Verifica che i calendari siano allineati</li>
+              <li><strong>4. Usa nomi chiari</strong> - "Airbnb Villa Mare" invece di "Calendario 1"</li>
+              <li><strong>5. Testa la sincronizzazione</strong> - Blocca manualmente una data e verifica che appaia su tutte le piattaforme</li>
+              <li><strong>6. Mantieni aggiornati i link</strong> - Se rigeneri un link iCal, aggiorna tutte le importazioni</li>
+              <li><strong>7. Disattiva "prenotazione immediata"</strong> - O imposta un tempo di preparazione di 24h</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Tempi di Sincronizzazione</h2>
+
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Piattaforma</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Frequenza Aggiornamento</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Tempo Massimo</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                <tr>
+                  <td className="px-6 py-4 text-sm text-gray-700">Airbnb</td>
+                  <td className="px-6 py-4 text-sm text-gray-700">Ogni 8-12 ore</td>
+                  <td className="px-6 py-4 text-sm text-gray-700">24 ore</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm text-gray-700">Booking.com</td>
+                  <td className="px-6 py-4 text-sm text-gray-700">Ogni 4-8 ore</td>
+                  <td className="px-6 py-4 text-sm text-gray-700">24 ore</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-sm text-gray-700">Google Calendar</td>
+                  <td className="px-6 py-4 text-sm text-gray-700">Ogni 8-24 ore</td>
+                  <td className="px-6 py-4 text-sm text-gray-700">48 ore</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-gray-500 mt-3">⚠️ I tempi possono variare. Non fare affidamento su sincronizzazioni immediate.</p>
+        </div>
+
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold text-blue-800 mb-2">📚 Fonti Ufficiali:</h3>
+          <ul className="space-y-2 text-blue-700">
+            <li>• <a href="https://www.airbnb.it/help/article/99" className="text-primary underline" target="_blank" rel="noopener noreferrer">Airbnb - Sincronizzazione Calendario</a></li>
+            <li>• <a href="https://partner.booking.com/it/help/rates-availability/calendar-sync-how-can-i-sync-my-bookingcom-calendar-external-calendars" className="text-primary underline" target="_blank" rel="noopener noreferrer">Booking.com - Guida Sincronizzazione</a></li>
+            <li>• <a href="https://support.google.com/calendar/answer/37100" className="text-primary underline" target="_blank" rel="noopener noreferrer">Google Calendar - Importare Calendari</a></li>
+          </ul>
+        </div>
+
+        <div className="bg-primary/10 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold text-primary mb-3">🛡️ Tool Anti-Overbooking</h3>
+          <p className="text-gray-700 mb-4">
+            Anche con la sincronizzazione, i ritardi di 8-24 ore possono causare overbooking. Il nostro tool monitora in tempo reale
+            tutti i tuoi calendari e ti avvisa immediatamente se rileva conflitti.
+          </p>
+          <button onClick={() => window.open('https://overbooking-shield-tool.vercel.app/', '_blank', 'noopener,noreferrer')} className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition cursor-pointer">
+            Prova il Tool Gratuito →
           </button>
         </div>
       </div>
