@@ -14,6 +14,7 @@ import ToolsUnifiedSection from './components/sections/ToolsUnifiedSection';
 import LandingServiceSection from './components/sections/LandingServiceSection';
 import ContactSection from './components/sections/ContactSection';
 import { ThemeProvider } from './contexts/ThemeContext';
+import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
   const [currentGuide, setCurrentGuide] = useState(null);
@@ -53,28 +54,34 @@ export default function App() {
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
         <Header currentGuide={currentGuide} onBackToHome={handleBackToHome} />
         {currentGuide ? (
-          <GuideViewer guide={currentGuide} onBack={handleBackToHome} />
+          <ErrorBoundary>
+            <GuideViewer guide={currentGuide} onBack={handleBackToHome} />
+          </ErrorBoundary>
         ) : (
           <main>
             <HeroSection />
-            <ToolsUnifiedSection showToast={showToast} />
+            <ErrorBoundary>
+              <ToolsUnifiedSection showToast={showToast} />
+            </ErrorBoundary>
             <LandingServiceSection showToast={showToast} />
             <GuidesSection onGuideClick={handleGuideClick} />
             <ContactSection showToast={showToast} />
           </main>
         )}
         <Footer showToast={showToast} />
-        
+
         {/* CIN Support Form */}
-        <ContactForm
-          type="cin"
-          isOpen={isCinFormOpen}
-          onClose={() => setIsCinFormOpen(false)}
-          title="Supporto Richiesta CIN"
-          description="Ti aiutiamo con la procedura per richiedere il Codice Identificativo Nazionale."
-          showToast={showToast}
-        />
-        
+        <ErrorBoundary>
+          <ContactForm
+            type="cin"
+            isOpen={isCinFormOpen}
+            onClose={() => setIsCinFormOpen(false)}
+            title="Supporto Richiesta CIN"
+            description="Ti aiutiamo con la procedura per richiedere il Codice Identificativo Nazionale."
+            showToast={showToast}
+          />
+        </ErrorBoundary>
+
         {/* Toast Container */}
         <ToastContainer />
       </div>
