@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import './index.css';
 
-// Components
+// Layout Components (always loaded)
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import GuideViewer from './components/guides/GuideViewer';
-import ContactForm from './components/forms/ContactForm';
+
+// Lazy-loaded Components (code splitting)
+const GuideViewer = lazy(() => import('./components/guides/GuideViewer'));
+const ContactForm = lazy(() => import('./components/forms/ContactForm'));
+
+// Regular Components
 import { useToast } from './components/ui/Toast';
 import SEO from './components/ui/SEO';
 import HeroSection from './components/sections/HeroSection';
@@ -17,6 +21,16 @@ import ContactSection from './components/sections/ContactSection';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import { webApplicationSchema, organizationSchema } from './data/jsonLdSchemas';
+
+// Loading fallback component
+const LoadingFallback = ({ message = 'Caricamento...' }) => (
+  <div className="flex items-center justify-center p-8 min-h-[200px]">
+    <div className="text-center">
+      <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary mb-3"></div>
+      <p className="text-gray-600 dark:text-gray-400">{message}</p>
+    </div>
+  </div>
+);
 
 export default function App() {
   const [currentGuide, setCurrentGuide] = useState(null);
@@ -97,7 +111,9 @@ export default function App() {
         <Header currentGuide={currentGuide} onBackToHome={handleBackToHome} />
         {currentGuide ? (
           <ErrorBoundary>
-            <GuideViewer guide={currentGuide} onBack={handleBackToHome} />
+            <Suspense fallback={<LoadingFallback message="Caricamento guida..." />}>
+              <GuideViewer guide={currentGuide} onBack={handleBackToHome} />
+            </Suspense>
           </ErrorBoundary>
         ) : (
           <main>
@@ -112,16 +128,18 @@ export default function App() {
         )}
         <Footer showToast={showToast} />
 
-        {/* CIN Support Form */}
+        {/* CIN Support Form - Lazy loaded */}
         <ErrorBoundary>
-          <ContactForm
-            type="cin"
-            isOpen={isCinFormOpen}
-            onClose={() => setIsCinFormOpen(false)}
-            title="Supporto Richiesta CIN"
-            description="Ti aiutiamo con la procedura per richiedere il Codice Identificativo Nazionale."
-            showToast={showToast}
-          />
+          <Suspense fallback={null}>
+            <ContactForm
+              type="cin"
+              isOpen={isCinFormOpen}
+              onClose={() => setIsCinFormOpen(false)}
+              title="Supporto Richiesta CIN"
+              description="Ti aiutiamo con la procedura per richiedere il Codice Identificativo Nazionale."
+              showToast={showToast}
+            />
+          </Suspense>
         </ErrorBoundary>
 
         {/* Toast Container */}
