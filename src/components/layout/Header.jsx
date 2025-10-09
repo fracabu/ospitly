@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from '@heroicons/react/24/solid';
 import OspitlyLogo from '../ui/OspitlyLogo';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -6,6 +6,8 @@ import { useTheme } from '../../contexts/ThemeContext';
 export default function Header({ currentGuide, onBackToHome }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const scrollTimeoutRef = useRef(null);
+  const pendingScrollRef = useRef(null);
 
   const navigation = [
     { name: 'Tool', href: '#tools' },
@@ -14,33 +16,80 @@ export default function Header({ currentGuide, onBackToHome }) {
     { name: 'Contatti', href: '#contact' }
   ];
 
-  const scrollToSection = (sectionId, closeMenu = false) => {
-    if (closeMenu) setIsMenuOpen(false);
-    
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Scroll to element when back on homepage
+  useEffect(() => {
+    if (!currentGuide && pendingScrollRef.current) {
+      const sectionId = pendingScrollRef.current;
+      pendingScrollRef.current = null;
+
+      // Use requestAnimationFrame to ensure DOM is ready
+      requestAnimationFrame(() => {
+        const element = document.getElementById(sectionId.replace('#', ''));
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+        }
+      });
+    }
+  }, [currentGuide]);
+
+  const scrollToSection = async (sectionId, closeMenu = false) => {
+    // Clear any pending scroll timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = null;
+    }
+
+    // Close mobile menu if needed
+    if (closeMenu) {
+      setIsMenuOpen(false);
+    }
+
     // If we're in a guide, go back to homepage first
     if (currentGuide) {
+      pendingScrollRef.current = sectionId;
       onBackToHome();
-      setTimeout(() => {
-        const element = document.getElementById(sectionId.replace('#', ''));
-        if (element) {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest'
-          });
-        }
-      }, 300);
     } else {
-      setTimeout(() => {
-        const element = document.getElementById(sectionId.replace('#', ''));
-        if (element) {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest'
-          });
-        }
-      }, closeMenu ? 150 : 0);
+      // Small delay only if closing menu to allow animation
+      const delay = closeMenu ? 150 : 0;
+
+      if (delay > 0) {
+        scrollTimeoutRef.current = setTimeout(() => {
+          const element = document.getElementById(sectionId.replace('#', ''));
+          if (element) {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest'
+            });
+          }
+          scrollTimeoutRef.current = null;
+        }, delay);
+      } else {
+        // Immediate scroll with requestAnimationFrame
+        requestAnimationFrame(() => {
+          const element = document.getElementById(sectionId.replace('#', ''));
+          if (element) {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest'
+            });
+          }
+        });
+      }
     }
   };
 
