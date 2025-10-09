@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CheckCircleIcon, GlobeAltIcon } from '@heroicons/react/24/solid';
 import OspitlyLogo from '../ui/OspitlyLogo';
 import ContactForm from '../forms/ContactForm';
+import FadeInOnScroll, { FadeInStagger, FadeInStaggerItem } from '../ui/FadeInOnScroll';
 
 export default function LandingServiceSection({ showToast }) {
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
@@ -9,16 +10,20 @@ export default function LandingServiceSection({ showToast }) {
   return (
     <section id="custom-landing" className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-12 min-h-screen flex items-center overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
-            Sito Web Completo per Host<br />
-            <span className="text-primary">Zero commissioni, massimi ricavi</span>
-          </h2>
-        </div>
+        <FadeInOnScroll direction="up" duration={0.6}>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+              Sito Web Completo per Host<br />
+              <span className="text-primary">Zero commissioni, massimi ricavi</span>
+            </h2>
+          </div>
+        </FadeInOnScroll>
 
-        <div className="grid lg:grid-cols-3 gap-8 items-start max-w-7xl mx-auto">
+        <FadeInStagger staggerDelay={0.2}>
+          <div className="grid lg:grid-cols-3 gap-8 items-start max-w-7xl mx-auto">
           {/* Pricing Column */}
-          <div className="space-y-6">
+          <FadeInStaggerItem>
+            <div className="space-y-6">
             {/* Pricing Box */}
             <div className="bg-gradient-to-r from-primary/10 to-orange-400/10 border-2 border-primary/20 rounded-2xl p-4">
               <div className="text-center">
@@ -47,10 +52,12 @@ export default function LandingServiceSection({ showToast }) {
               </div>
             </div>
           </div>
+          </FadeInStaggerItem>
 
           {/* Services Column */}
-          <div className="space-y-6">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+          <FadeInStaggerItem>
+            <div className="space-y-6">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Cosa include:</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -91,10 +98,12 @@ export default function LandingServiceSection({ showToast }) {
               </div>
             </div>
           </div>
+          </FadeInStaggerItem>
 
           {/* Mockup Column */}
-          <div className="relative">
-            <div className="relative bg-white rounded-2xl shadow-2xl border border-gray-200 p-3 hover:shadow-3xl transition-shadow duration-300">
+          <FadeInStaggerItem>
+            <div className="relative">
+              <div className="relative bg-white rounded-2xl shadow-2xl border border-gray-200 p-3 hover:shadow-3xl transition-shadow duration-300">
               {/* Browser Bar */}
               <div className="flex items-center gap-2 bg-gray-100 rounded-t-lg p-3 mb-2">
                 <div className="flex gap-2">
@@ -153,14 +162,18 @@ export default function LandingServiceSection({ showToast }) {
               </button>
             </div>
           </div>
-        </div>
+          </FadeInStaggerItem>
+          </div>
+        </FadeInStagger>
 
         {/* Garanzie Section */}
-        <div className="text-center mt-8">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            ✅ Consegna in 7-14 giorni • ✅ Supporto gratuito incluso • ✅ Revisioni illimitate
-          </p>
-        </div>
+        <FadeInOnScroll direction="up" delay={0.3} duration={0.6}>
+          <div className="text-center mt-8">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              ✅ Consegna in 7-14 giorni • ✅ Supporto gratuito incluso • ✅ Revisioni illimitate
+            </p>
+          </div>
+        </FadeInOnScroll>
 
       </div>
       

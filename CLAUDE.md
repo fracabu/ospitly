@@ -62,7 +62,8 @@ src/
 │   │   └── ContactForm.jsx     # Contact form with EmailJS integration
 │   └── ui/
 │       ├── OspitlyLogo.jsx     # Reusable logo component
-│       └── Toast.jsx           # Toast notification system
+│       ├── Toast.jsx           # Toast notification system
+│       └── FadeInOnScroll.jsx  # Scroll-triggered animation components
 ├── contexts/
 │   └── ThemeContext.jsx        # Dark/light theme provider with localStorage persistence
 ├── data/
@@ -161,7 +162,9 @@ App.jsx (state: currentGuide, isCinFormOpen)
 
 ### Performance Considerations
 - Lazy load embedded iframes
-- Use Framer Motion for smooth animations
+- Use Framer Motion for smooth animations with intersection observer patterns
+- FadeInOnScroll components use `useInView` hook with `-100px` margin for early triggering
+- Animation components support direction (up/down/left/right), stagger delays, and custom durations
 - Implement proper image optimization (logo assets in /public)
 - Maintain fast build times with Vite
 
@@ -198,3 +201,57 @@ The application serves Italian hospitality hosts dealing with:
 - Revenue optimization through direct bookings
 
 Target users are accommodation hosts who need reliable tools and current regulatory information to manage their properties effectively.
+
+## Animation System
+
+The project uses a custom animation wrapper built on Framer Motion:
+
+- **FadeInOnScroll**: Main component for scroll-triggered fade animations
+  - Props: `direction` (up/down/left/right/none), `delay`, `duration`, `once`
+  - Uses intersection observer with `-100px` margin for early triggering
+  - Custom easing: `[0.25, 0.4, 0.25, 1]`
+
+- **FadeInStagger**: Container for staggered children animations
+  - Props: `staggerDelay` (default 0.1s between children)
+  - Automatically coordinates child animation timing
+
+- **FadeInStaggerItem**: Individual items within staggered animations
+  - Used as children of `FadeInStagger`
+  - Supports `direction` prop for animation direction
+
+Usage pattern in sections:
+```jsx
+<FadeInOnScroll direction="up" delay={0.3}>
+  <h2>Title</h2>
+</FadeInOnScroll>
+
+<FadeInStagger staggerDelay={0.2}>
+  {items.map(item => (
+    <FadeInStaggerItem key={item.id}>
+      <Card {...item} />
+    </FadeInStaggerItem>
+  ))}
+</FadeInStagger>
+```
+
+## Development Roadmap
+
+See **TODO.md** for the complete prioritized task list. Key items include:
+
+### High Priority (🔴)
+1. ~~**Toast System Bug**~~ - ✅ Fixed: Moved animation from inline `<style jsx>` to index.css
+2. **Error Boundaries** - Add error handling to prevent full app crashes
+3. **Form Validation** - Improve ContactForm with custom validation and error messages
+
+### Medium Priority (🟡)
+4. **SEO Meta Tags** - Complete Open Graph, Twitter Cards, and JSON-LD schemas
+5. **Scroll Behavior** - Refactor nested setTimeout calls to use refs/async-await
+6. **Lazy Loading** - Implement code splitting for GuideViewer and ContactForm
+
+### Low Priority (🔵)
+7. **Testing Setup** - Add Vitest + React Testing Library
+8. **Rate Limiting** - Prevent EmailJS spam with cooldown (localStorage)
+9. **Accessibility** - ARIA labels, focus trap, screen reader support
+10. **Image Optimization** - WebP format, lazy loading, preload critical assets
+
+Total estimated time: ~7h 45min

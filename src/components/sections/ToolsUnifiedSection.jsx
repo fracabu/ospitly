@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { 
+import {
   CurrencyDollarIcon,
-  ShieldCheckIcon, 
-  LightBulbIcon, 
-  EyeIcon, 
+  ShieldCheckIcon,
+  LightBulbIcon,
+  EyeIcon,
   ArrowTopRightOnSquareIcon,
   BellIcon,
   CheckCircleIcon,
   StarIcon
 } from '@heroicons/react/24/solid';
+import FadeInOnScroll, { FadeInStagger, FadeInStaggerItem } from '../ui/FadeInOnScroll';
 
 export default function ToolsUnifiedSection({ showToast }) {
   const [email, setEmail] = useState('');
@@ -104,16 +105,20 @@ L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
     <section id="tools" className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-12 sm:py-16 min-h-screen flex items-center transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Tool Gratuiti
-          </h2>
-        </div>
+        <FadeInOnScroll direction="up" duration={0.6}>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Tool Gratuiti
+            </h2>
+          </div>
+        </FadeInOnScroll>
 
         {/* Three Column Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+        <FadeInStagger staggerDelay={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
           {/* Column 1: Tool Tassa Soggiorno */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <FadeInStaggerItem>
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="p-4 sm:p-6 text-center">
               {(() => {
                 const IconComponent = activeTools[0].icon;
@@ -137,10 +142,12 @@ L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
               </button>
             </div>
           </div>
+          </FadeInStaggerItem>
 
           {/* Column 2: Tool Anti-Overbooking */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="p-4 sm:p-6 text-center">
+          <FadeInStaggerItem>
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="p-4 sm:p-6 text-center">
               {(() => {
                 const IconComponent = activeTools[1].icon;
                 return (
@@ -163,10 +170,12 @@ L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
               </button>
             </div>
           </div>
+          </FadeInStaggerItem>
 
           {/* Column 3: Upcoming Tools */}
-          <div className="space-y-6">
-            {/* Upcoming Tools Card */}
+          <FadeInStaggerItem>
+            <div className="space-y-6">
+              {/* Upcoming Tools Card */}
             <div className="bg-gradient-to-br from-white to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-600">
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 text-center">
                 Prossimi Tool
@@ -254,7 +263,9 @@ L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
               </div>
             </div>
           </div>
-        </div>
+          </FadeInStaggerItem>
+          </div>
+        </FadeInStagger>
       </div>
     </section>
   );

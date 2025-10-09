@@ -98,21 +98,14 @@ export default function Toast({
         
         {/* Progress bar */}
         <div className="mt-3 h-1 bg-white/20 rounded-full overflow-hidden">
-          <div 
+          <div
             className="h-full bg-white/40 rounded-full transition-all ease-linear"
             style={{
-              animation: `shrink ${duration}ms linear`
+              animation: `toast-shrink ${duration}ms linear`
             }}
           />
         </div>
       </div>
-      
-      <style jsx>{`
-        @keyframes shrink {
-          from { width: 100%; }
-          to { width: 0%; }
-        }
-      `}</style>
     </div>
   );
 }
