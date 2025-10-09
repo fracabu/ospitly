@@ -23,14 +23,48 @@ export default function ContactForm({
     // Fields for CIN support
     supportType: ''
   });
-  
+
   const [status, setStatus] = useState('idle'); // idle, sending, success, error
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Validate name (minimum 2 characters)
+    if (!formData.name || formData.name.trim().length < 2) {
+      newErrors.name = 'Il nome deve contenere almeno 2 caratteri';
+    }
+
+    // Validate email (proper format)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email) {
+      newErrors.email = 'L\'email è obbligatoria';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Inserisci un indirizzo email valido';
+    }
+
+    // Validate message (minimum 20 characters)
+    if (!formData.message || formData.message.trim().length < 20) {
+      newErrors.message = 'Il messaggio deve contenere almeno 20 caratteri';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const getEmailTemplate = () => {
@@ -102,6 +136,13 @@ ${formData.message}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate form before submitting
+    if (!validateForm()) {
+      showToast?.('❌ Correggi gli errori nel form prima di inviare', 'error');
+      return;
+    }
+
     setStatus('sending');
 
     try {
@@ -116,13 +157,14 @@ ${formData.message}
 
       setStatus('success');
       showToast?.('✅ Email inviata con successo! Ti risponderemo entro 24h.', 'success');
-      
+
       // Reset form and close
       setTimeout(() => {
         setFormData({
-          name: '', email: '', message: '', structureName: '', 
+          name: '', email: '', message: '', structureName: '',
           structureType: '', rooms: '', location: '', currentWebsite: '', supportType: ''
         });
+        setErrors({});
         setStatus('idle');
         onClose?.();
       }, 1000);
@@ -170,10 +212,19 @@ ${formData.message}
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary transition-colors ${
+                  errors.name
+                    ? 'border-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:border-primary'
+                }`}
                 placeholder="Il tuo nome"
               />
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                  <ExclamationCircleIcon className="h-4 w-4" />
+                  {errors.name}
+                </p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -184,10 +235,19 @@ ${formData.message}
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary transition-colors ${
+                  errors.email
+                    ? 'border-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:border-primary'
+                }`}
                 placeholder="la-tua-email@example.com"
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                  <ExclamationCircleIcon className="h-4 w-4" />
+                  {errors.email}
+                </p>
+              )}
             </div>
           </div>
 
@@ -325,17 +385,31 @@ ${formData.message}
           {/* Message */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Messaggio *
+              Messaggio * <span className="text-gray-500 font-normal">(min. 20 caratteri)</span>
             </label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleInputChange}
-              required
               rows={4}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors resize-none"
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary transition-colors resize-none ${
+                errors.message
+                  ? 'border-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:border-primary'
+              }`}
               placeholder="Descrivici la tua richiesta..."
             />
+            {errors.message && (
+              <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                <ExclamationCircleIcon className="h-4 w-4" />
+                {errors.message}
+              </p>
+            )}
+            {!errors.message && formData.message && (
+              <p className="mt-1 text-sm text-gray-500">
+                {formData.message.trim().length} / 20 caratteri
+              </p>
+            )}
           </div>
 
 
