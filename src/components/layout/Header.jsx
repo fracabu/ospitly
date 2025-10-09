@@ -46,7 +46,7 @@ export default function Header({ currentGuide, onBackToHome }) {
 
   return (
     <header className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
-      <div className="container mx-auto flex items-center justify-between px-6 py-1">
+      <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <a 
           href="#" 
           onClick={(e) => {
@@ -59,7 +59,7 @@ export default function Header({ currentGuide, onBackToHome }) {
           }}
           className="flex-shrink-0 hover:opacity-80 transition-opacity"
         >
-          <OspitlyLogo cssClass="logo-header" /> 
+          <OspitlyLogo size="normal" /> 
         </a>
         
         {/* Desktop Navigation */}
@@ -68,7 +68,7 @@ export default function Header({ currentGuide, onBackToHome }) {
             <a 
               key={item.name}
               href={item.href} 
-              className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group text-sm"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group text-base"
               onClick={(e) => { 
                 e.preventDefault(); 
                 scrollToSection(item.href);

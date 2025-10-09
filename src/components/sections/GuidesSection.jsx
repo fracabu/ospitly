@@ -1,21 +1,19 @@
-import { useState } from 'react';
-import { ClockIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
-import { GUIDE_CATEGORIES, GUIDES_DATA, GUIDE_CONTENT } from '../../data/guideContent.jsx';
+import { ClockIcon } from '@heroicons/react/24/solid';
+import { GUIDE_CONTENT } from '../../data/guideContent.jsx';
 
 export default function GuidesSection({ onGuideClick }) {
-  const [activeCategory, setActiveCategory] = useState('tasse');
   
   return (
     <section id="guides" className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 py-16 min-h-screen flex items-center transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Guide Essenziali
           </h2>
         </div>
 
         {/* Three Column Layout */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
           {[
             {
               title: "CIN Obbligatorio 2025",
@@ -39,7 +37,7 @@ export default function GuidesSection({ onGuideClick }) {
               badgeColor: "bg-blue-500"
             }
           ].map((guide, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative sm:col-span-1 ${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''}">
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
               {/* Badge */}
               <div className={`absolute top-4 right-4 ${guide.badgeColor} text-white px-3 py-1 rounded-full text-xs font-semibold`}>
                 {guide.badge}

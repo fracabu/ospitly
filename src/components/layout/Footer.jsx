@@ -21,8 +21,8 @@ export default function Footer({ showToast }) {
 
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid gap-8 md:grid-cols-3 items-start">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div className="grid gap-6 sm:gap-8 sm:grid-cols-1 md:grid-cols-3 items-start">
           {/* Brand Section */}
           <div className="flex flex-col items-center md:items-start">
             <a 
@@ -33,9 +33,9 @@ export default function Footer({ showToast }) {
               }}
               className="hover:opacity-80 transition-opacity"
             >
-              <OspitlyLogo cssClass="logo-footer" />
+              <OspitlyLogo size="normal" />
             </a>
-            <p className="text-gray-300 mt-3 text-center md:text-left text-lg">
+            <p className="text-gray-300 mt-3 text-center md:text-left text-base sm:text-lg">
               Semplifichiamo la vita degli host.
             </p>
             <div className="mt-4 text-center md:text-left">
@@ -48,7 +48,7 @@ export default function Footer({ showToast }) {
 
           {/* Links Section */}
           <div className="text-center md:text-left">
-            <h4 className="font-semibold text-white text-lg mb-4">Link Utili</h4>
+            <h4 className="font-semibold text-white text-base sm:text-lg mb-4">Link Utili</h4>
             <nav className="space-y-3">
               {footerLinks.map((link) => (
                 <a 
@@ -68,7 +68,7 @@ export default function Footer({ showToast }) {
 
           {/* Contact Section */}
           <div className="text-center md:text-left">
-            <h4 className="font-semibold text-white text-lg mb-4">Contatti</h4>
+            <h4 className="font-semibold text-white text-base sm:text-lg mb-4">Contatti</h4>
             <div className="space-y-3">
               <button 
                 onClick={() => setIsContactFormOpen(true)}

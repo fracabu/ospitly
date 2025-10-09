@@ -7,7 +7,6 @@
 /* HTML smooth scroll */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 120px; /* Account for sticky header */
 }
 
 /* Smooth scroll animations */
@@ -15,11 +14,6 @@ html {
   * {
     scroll-behavior: smooth;
   }
-}
-
-/* Enhanced scroll for sections */
-section {
-  scroll-margin-top: 120px;
 }
 
 /* Body di default */
@@ -30,16 +24,4 @@ body {
 /* Reset margini */
 * {
   @apply m-0 p-0 box-border;
-}
-.logo-header {
-  width: 400px !important;
-  height: 150px !important;
-  object-fit: contain !important;
-}
-
-.logo-footer {
-  width: 400px !important;
-  height: 150px !important;
-  object-fit: contain !important;
-  filter: brightness(0) invert(1); /* Inverte i colori per renderlo bianco su sfondo scuro */
 }

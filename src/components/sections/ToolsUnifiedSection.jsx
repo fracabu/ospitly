@@ -101,20 +101,20 @@ L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
   };
 
   return (
-    <section id="tools" className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-16 min-h-screen flex items-center transition-colors duration-300">
-      <div className="container mx-auto px-6">
+    <section id="tools" className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-12 sm:py-16 min-h-screen flex items-center transition-colors duration-300">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Tool Gratuiti
           </h2>
         </div>
 
         {/* Three Column Layout */}
-        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
           {/* Column 1: Tool Tassa Soggiorno */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="p-6 text-center">
+            <div className="p-4 sm:p-6 text-center">
               {(() => {
                 const IconComponent = activeTools[0].icon;
                 return (
@@ -123,10 +123,10 @@ L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
                   </div>
                 );
               })()}
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3">
                 {activeTools[0].title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
                 {activeTools[0].description}
               </p>
               <button
@@ -140,7 +140,7 @@ L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
 
           {/* Column 2: Tool Anti-Overbooking */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="p-6 text-center">
+            <div className="p-4 sm:p-6 text-center">
               {(() => {
                 const IconComponent = activeTools[1].icon;
                 return (
@@ -149,10 +149,10 @@ L'utente vuole essere contattato quando i nuovi tool saranno disponibili.
                   </div>
                 );
               })()}
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3">
                 {activeTools[1].title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
                 {activeTools[1].description}
               </p>
               <button

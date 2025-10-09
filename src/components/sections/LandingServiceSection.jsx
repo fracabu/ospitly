@@ -1,24 +1,10 @@
 import { useState } from 'react';
-import { CheckCircleIcon, GlobeAltIcon, ChartBarIcon } from '@heroicons/react/24/solid';
+import { CheckCircleIcon, GlobeAltIcon } from '@heroicons/react/24/solid';
 import OspitlyLogo from '../ui/OspitlyLogo';
 import ContactForm from '../forms/ContactForm';
 
 export default function LandingServiceSection({ showToast }) {
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
-  
-  const serviceFeatures = [ 
-    "Sito web moderno e personalizzato", 
-    "Form di contatto diretto", 
-    "Area admin semplice per gestire i messaggi", 
-    "Ottimizzato per essere trovato su Google", 
-    "Nessuna commissione da pagare a Booking o Airbnb" 
-  ];
-
-  const benefits = [
-    { icon: ChartBarIcon, title: "0% Commissioni", description: "Niente più 15-18% alle OTA" },
-    { icon: GlobeAltIcon, title: "SEO Ottimizzato", description: "Trovato facilmente su Google" },
-    { icon: CheckCircleIcon, title: "Gestione Facile", description: "Dashboard semplice e intuitiva" }
-  ];
 
   return (
     <section id="custom-landing" className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-12 min-h-screen flex items-center overflow-hidden transition-colors duration-300">
@@ -130,7 +116,9 @@ export default function LandingServiceSection({ showToast }) {
                 </div>
 
                 <div className="relative text-center">
-                  <OspitlyLogo cssClass="h-8 w-auto mx-auto opacity-30 mb-4" />
+                  <div className="opacity-30 mb-4 flex justify-center">
+                    <OspitlyLogo size="small" />
+                  </div>
                   <h3 className="text-2xl font-bold text-gray-700 mb-2">Villa Mia Bella</h3>
                   <p className="text-gray-600 mb-4">Il tuo angolo di paradiso in Toscana</p>
                   

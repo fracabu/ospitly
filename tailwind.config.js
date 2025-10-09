@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '480px',
+      },
       fontFamily: {
         // NUOVA SINTASSI v4: molto più semplice.
         // Aggiungiamo 'sans-serif' come fallback generico.

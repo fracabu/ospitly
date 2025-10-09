@@ -58,36 +58,36 @@ export default function AppsSection() {
   };
 
   return (
-    <section id="apps" className="bg-gradient-to-br from-gray-50 to-white py-16 min-h-screen flex items-center">
-      <div className="container mx-auto px-6">
+    <section id="apps" className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-12 sm:py-16 min-h-screen flex items-center transition-colors duration-300">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Tool Gratuiti
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
           {apps.map((app) => (
             <div 
               key={app.id}
-              className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
               {/* Header */}
-              <div className="p-6 text-center">
+              <div className="p-4 sm:p-6 text-center">
                 <div className={`inline-flex p-4 bg-gradient-to-br ${app.gradient} rounded-2xl shadow-lg mb-4`}>
                   <app.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
                   {app.title}
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
                   {app.description}
                 </p>
                 
                 {/* CTA */}
                 <button
                   onClick={() => handleAppClick(app.url)}
-                  className={`w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r ${app.gradient} text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition-all transform hover:scale-105 text-lg`}
+                  className={`w-full flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r ${app.gradient} text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition-all transform hover:scale-105 text-sm sm:text-base md:text-lg`}
                 >
                   Apri Gratis
                   <ArrowTopRightOnSquareIcon className="h-5 w-5" />

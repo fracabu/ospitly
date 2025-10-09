@@ -35,11 +35,11 @@ npm run preview
 
 ### Core Application Structure
 
-- **src/App.jsx**: Main application component with guide viewer state management (82 lines)
-- **src/main.jsx**: Application entry point with React Router setup and BrowserRouter wrapper
+- **src/App.jsx**: Main application component with guide viewer state management (83 lines)
+- **src/main.jsx**: Application entry point with React Router setup and BrowserRouter wrapper (14 lines)
 - **src/pages/CalcolatoreTassa.jsx**: Dedicated page for tax calculator (uses react-helmet-async)
 
-### Component Architecture (Refactored)
+### Component Architecture
 
 ```
 src/
@@ -73,10 +73,10 @@ src/
 
 ### Key Components & Features
 
-1. **Guide System**: 
+1. **Guide System**:
    - Dynamic guide viewer with complete content for CIN compliance, tourist tax, and overbooking prevention
    - Categorized guides (taxes, calendars, overbooking, pricing, regulations)
-   - Real content available for `cin-2025`, `tassa-soggiorno-2025`, and `overbooking-guida`
+   - Real content available for `cin-2025`, `tassa-soggiorno-2025`, `checkin-normative-2025`, and `overbooking-guida`
 
 2. **Tools Integration**:
    - Tourist tax calculator (embedded iframe: `https://tassa-soggiorno-calculator.vercel.app`)
@@ -89,14 +89,15 @@ src/
 
 4. **Contact & Forms**:
    - EmailJS integration for contact forms (@emailjs/browser 4.4.1)
+   - Service ID: `service_kj88jdm`, Template ID: `template_wifuco4`
    - Toast notification system for user feedback
-   - CIN support form with event-driven opening
+   - CIN support form with event-driven opening via custom window events
 
 5. **Theme System**:
    - Dark/light mode toggle with ThemeContext provider
-   - localStorage persistence for theme preferences
-   - System preference detection on first load
-   - Tailwind dark mode classes integration
+   - localStorage persistence for theme preferences (key: `ospitly-theme`)
+   - System preference detection on first load using `prefers-color-scheme`
+   - Tailwind dark mode classes integration (class-based strategy)
 
 ### Styling & Design System
 
@@ -106,11 +107,12 @@ src/
 - Custom font: Inter with sans-serif fallback
 - Content paths: `./index.html`, `./src/**/*.{js,jsx,ts,tsx}`
 - PostCSS integration through Vite config for optimized builds
-- Dark mode: class-based strategy for theme toggling
+- Dark mode: class-based strategy (`darkMode: 'class'`) for theme toggling
+- Extra small breakpoint: `xs: 480px`
 
 **Design Patterns**:
 - Gradient backgrounds for hero sections
-- Card-based layouts with hover effects
+- Card-based layouts with hover effects (hover:-translate-y-1, hover:scale-105)
 - Responsive grid systems (md:grid-cols-2, lg:grid-cols-3)
 - Color-coded difficulty levels (green/yellow/red for easy/intermediate/advanced)
 
@@ -123,28 +125,23 @@ The application contains detailed, current information about:
 - **Overbooking Prevention**: 83% of hosts experience overbooking, costing €200-500 per incident
 - **Calendar Synchronization**: .ics file management across platforms (Airbnb, Booking.com, Expedia)
 
-## UX/UI Improvements Implemented
+## State Management Pattern
 
-### Enhanced User Experience
-- **Smooth animations**: Hover effects, scale transforms, and slide transitions
-- **Visual hierarchy**: Better spacing, gradients, and color-coded sections
-- **Mobile-first design**: Improved responsive navigation and layouts
-- **Interactive elements**: Enhanced buttons, cards, and form components
-- **Loading optimization**: Lazy loading for iframes and images
-
-### State Management Pattern
-- **Guide Navigation**: Simple React state in `App.jsx` using `useState` for current guide
+### Simple React State Architecture
+- **Guide Navigation**: React state in `App.jsx` using `useState` for current guide
 - **Conditional Rendering**: Toggle between main landing page and full-screen guide viewer
 - **Props Flow**: Guide selection passed down via `onGuideClick` prop to `GuidesSection`
 - **Navigation**: Back navigation handled via `onBack` callback in `GuideViewer`
-- **Event System**: Custom window events for CIN form opening (`openCinForm`)
+- **Event System**: Custom window events for CIN form opening (`openCinForm` event)
 - **Theme Management**: Context-based theme provider with `useTheme` hook
 
-### Component-Based Architecture Benefits
-- **Maintainability**: Each section is now a separate, focused component  
-- **Reusability**: UI components like `OspitlyLogo` can be reused
-- **Testability**: Individual components can be tested in isolation
-- **Developer Experience**: Easier to understand and modify specific features
+### Data Flow Example
+```
+App.jsx (state: currentGuide, isCinFormOpen)
+  ├─> GuidesSection (onGuideClick callback)
+  ├─> GuideViewer (guide prop, onBack callback)
+  └─> ContactForm (isOpen, onClose, showToast props)
+```
 
 ## Development Guidelines
 
@@ -184,9 +181,12 @@ The application contains detailed, current information about:
 
 ## External Integrations
 
-- Email service: `info@ospitly.it` for contact forms and support
-- Calculator iframe: Hosted separately on Vercel
-- Anti-overbooking tool: In development phase
+- **EmailJS**: Used for contact forms (@emailjs/browser 4.4.1). Configuration in `src/components/sections/ToolsUnifiedSection.jsx` and `src/components/forms/ContactForm.jsx`
+- Contact email: `info@ospitly.it`
+
+### External Tools
+- Calculator iframe: `https://tassa-soggiorno-calculator.vercel.app`
+- Anti-overbooking tool: `https://overbooking-shield-tool.vercel.app/`
 - Future tools: Dashboard analytics, competitor pricing, multi-platform optimization
 
 ## Business Context
