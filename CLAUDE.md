@@ -37,9 +37,11 @@ npm run preview
 
 ### Core Application Structure
 
-- **src/App.jsx**: Main application component with guide viewer state management
-- **src/main.jsx**: Application entry point with React Router setup and BrowserRouter wrapper
-- **src/pages/CalcolatoreTassa.jsx**: Dedicated page for tax calculator (uses react-helmet-async for SEO)
+- **src/main.jsx**: Application entry point with HelmetProvider, ErrorBoundary, and BrowserRouter wrapper
+- **src/App.jsx**: Main application component with routing, SEO management, and CIN form state
+- **src/pages/HomePage.jsx**: Landing page with all main sections (hero, tools, guides, contact)
+- **src/pages/GuidePage.jsx**: Dynamic guide page with URL-based routing (/guide/:slug)
+- **src/pages/CalcolatoreTassa.jsx**: Dedicated page for tax calculator (legacy, may be unused)
 
 ### Component Architecture
 
@@ -51,35 +53,39 @@ src/
 │   │   └── Footer.jsx          # Footer with enhanced UX
 │   ├── sections/
 │   │   ├── HeroSection.jsx         # Main hero section
-│   │   ├── AppsSection.jsx         # Calculator + Anti-overbooking tools
-│   │   ├── GuidesSection.jsx       # Interactive guide browser
-│   │   ├── FeaturesSection.jsx     # Benefits with animations
-│   │   ├── OtherToolsSection.jsx   # Future tools with early access
+│   │   ├── ToolsUnifiedSection.jsx # Unified tools display (calculator + anti-overbooking)
 │   │   ├── LandingServiceSection.jsx # Website creation service
-│   │   ├── ContactSection.jsx      # Contact form integration
-│   │   └── ToolsUnifiedSection.jsx # Unified tools display
+│   │   ├── GuidesSection.jsx       # Interactive guide browser with cards
+│   │   └── ContactSection.jsx      # Contact form integration
 │   ├── guides/
-│   │   └── GuideViewer.jsx     # Full-screen guide reader
+│   │   └── GuideViewer.jsx     # Full-screen guide reader (lazy loaded)
 │   ├── forms/
-│   │   └── ContactForm.jsx     # Contact form with EmailJS integration
-│   └── ui/
-│       ├── OspitlyLogo.jsx     # Reusable logo component
-│       ├── Toast.jsx           # Toast notification system
-│       └── FadeInOnScroll.jsx  # Scroll-triggered animation components
+│   │   └── ContactForm.jsx     # Contact form with EmailJS integration (lazy loaded)
+│   ├── ui/
+│   │   ├── OspitlyLogo.jsx     # Reusable logo component
+│   │   ├── Toast.jsx           # Toast notification system with custom hook
+│   │   ├── FadeInOnScroll.jsx  # Scroll-triggered animation components
+│   │   └── SEO.jsx             # SEO meta tags with Open Graph and JSON-LD
+│   └── ErrorBoundary.jsx       # Error boundary for crash protection
 ├── contexts/
 │   └── ThemeContext.jsx        # Dark/light theme provider with localStorage persistence
 ├── data/
-│   └── guideContent.jsx        # Guide data and content (JSX format)
+│   ├── guideContent.jsx        # Guide data and content (JSX format)
+│   └── jsonLdSchemas.js        # Structured data schemas (WebApplication, Organization, FAQ)
 └── pages/
-    └── CalcolatoreTassa.jsx    # Separate tax calculator page
+    ├── HomePage.jsx            # Main landing page composition
+    ├── GuidePage.jsx           # Dynamic guide viewer page with routing
+    └── CalcolatoreTassa.jsx    # Legacy tax calculator page (may be unused)
 ```
 
 ### Key Components & Features
 
 1. **Guide System**:
-   - Dynamic guide viewer with complete content for CIN compliance, tourist tax, and overbooking prevention
-   - Categorized guides (taxes, calendars, overbooking, pricing, regulations)
+   - React Router-based navigation with dynamic URLs (`/guide/:slug`)
+   - Guide cards on homepage link to dedicated guide pages
+   - Full-screen guide viewer with lazy loading for performance
    - Real content available for `cin-2025`, `tassa-soggiorno-2025`, `checkin-normative-2025`, and `overbooking-guida`
+   - SEO-optimized with dynamic meta tags and JSON-LD Article schema per guide
 
 2. **Tools Integration**:
    - Tourist tax calculator (embedded iframe: `https://tassa-soggiorno-calculator.vercel.app`)
@@ -101,6 +107,13 @@ src/
    - localStorage persistence for theme preferences (key: `ospitly-theme`)
    - System preference detection on first load using `prefers-color-scheme`
    - Tailwind dark mode classes integration (class-based strategy)
+
+6. **Toast Notification System**:
+   - Custom `useToast` hook in `src/components/ui/Toast.jsx`
+   - Returns `{ showToast, ToastContainer }` for easy integration
+   - Auto-dismiss with progress bar animation (configurable duration)
+   - Four types: `success`, `error`, `warning`, `info`
+   - Toast state passed down via props from App.jsx to child components
 
 ### Styling & Design System
 
@@ -128,39 +141,61 @@ The application contains detailed, current information about:
 - **Overbooking Prevention**: 83% of hosts experience overbooking, costing €200-500 per incident
 - **Calendar Synchronization**: .ics file management across platforms (Airbnb, Booking.com, Expedia)
 
-## State Management Pattern
+## Routing & Navigation
 
-### Simple React State Architecture
-- **Guide Navigation**: React state in `App.jsx` using `useState` for current guide
-- **Conditional Rendering**: Toggle between main landing page and full-screen guide viewer
-- **Props Flow**: Guide selection passed down via `onGuideClick` prop to `GuidesSection`
-- **Navigation**: Back navigation handled via `onBack` callback in `GuideViewer`
-- **Event System**: Custom window events for CIN form opening (`openCinForm` event)
-- **Theme Management**: Context-based theme provider with `useTheme` hook
+### React Router Setup
+- **Router Type**: BrowserRouter (configured in `main.jsx`)
+- **Routes**:
+  - `/` - HomePage with all landing sections
+  - `/guide/:slug` - GuidePage with dynamic guide content
+- **Navigation**: Guide cards use `<Link to={/guide/${guide.id}>` for SPA navigation
+- **404 Handling**: GuidePage shows custom NotFound component for invalid slugs
+
+### State Management Pattern
+
+**Simple React State Architecture** - No Redux, just built-in hooks:
+- **CIN Form State**: Managed in `App.jsx` with custom window events (`openCinForm`)
+- **Toast Notifications**: Custom `useToast` hook provides `showToast` function passed via props
+- **Theme Management**: Context-based `ThemeProvider` with `useTheme` hook
+- **Guide Selection**: URL-based via React Router params (`useParams` in GuidePage)
 
 ### Data Flow Example
 ```
-App.jsx (state: currentGuide, isCinFormOpen)
-  ├─> GuidesSection (onGuideClick callback)
-  ├─> GuideViewer (guide prop, onBack callback)
-  └─> ContactForm (isOpen, onClose, showToast props)
+main.jsx (HelmetProvider → ErrorBoundary → BrowserRouter)
+  └─> App.jsx (Routes, SEO, isCinFormOpen state, showToast)
+      ├─> HomePage (showToast prop)
+      │   ├─> HeroSection
+      │   ├─> ToolsUnifiedSection (showToast)
+      │   ├─> LandingServiceSection (showToast)
+      │   ├─> GuidesSection (Links to /guide/:slug)
+      │   └─> ContactSection (showToast)
+      └─> GuidePage (useParams for slug)
+          └─> GuideViewer (lazy loaded, guide from GUIDE_CONTENT[slug])
 ```
 
 ## Development Guidelines
 
 ### Component Architecture
-- Use functional components with hooks
-- Implement responsive design with Tailwind breakpoints
-- Follow the established color scheme (primary/secondary) with gradients
-- Include hover states, transforms, and smooth transitions for interactive elements
-- Organize components by function (layout, sections, guides, ui, forms, contexts)
-- Wrap theme-dependent components with ThemeProvider from `ThemeContext`
+- **Use functional components with hooks** - No class components
+- **Lazy load heavy components** - Use `React.lazy()` and `<Suspense>` for GuideViewer, ContactForm, etc.
+- **Wrap critical sections with ErrorBoundary** - Prevent full app crashes
+- **Responsive design** - Mobile-first approach with Tailwind breakpoints (xs, sm, md, lg, xl)
+- **Color scheme** - Always use `primary` (#EF7E23) and `secondary` (#22D212) from Tailwind config
+- **Gradients** - Hero sections use `bg-gradient-to-br from-primary/10 to-secondary/5`
+- **Interactive elements** - Include hover states, transforms (`hover:-translate-y-1`), and smooth transitions
+- **Dark mode** - Use `dark:` Tailwind classes for all color/background declarations
+- **Component organization** - Place by function: layout/, sections/, guides/, ui/, forms/, contexts/
+- **Theme awareness** - Access theme via `useTheme()` hook from `ThemeContext`
 
-### Content Management
-- Guide content is stored in `src/data/guideContent.jsx` (centralized)
-- Real guides use JSX content with structured sections
-- Sources are provided for credibility and compliance
-- Email links use pre-filled subject/body for better UX
+### Content & Routing Patterns
+- **Guide content** - Centralized in `src/data/guideContent.jsx` as an object keyed by slug
+- **Guide structure** - Each guide has: `title`, `description`, `difficulty`, `category`, `readTime`, `content` (JSX), `sources`
+- **Navigation** - Use `<Link to="/guide/slug">` from react-router-dom, NOT `<a href>`
+- **Route parameters** - Access with `const { slug } = useParams()` in page components
+- **Programmatic navigation** - Use `const navigate = useNavigate(); navigate('/')`
+- **404 handling** - Check if guide exists: `const guide = GUIDE_CONTENT[slug]; if (!guide) return <NotFound />`
+- **Email links** - Use pre-filled subject/body: `mailto:info@ospitly.it?subject=...&body=...`
+- **Sources** - Always provide credible sources for guides (government sites, official docs)
 
 ### Performance Considerations
 - Lazy load embedded iframes
@@ -170,11 +205,23 @@ App.jsx (state: currentGuide, isCinFormOpen)
 - Implement proper image optimization (logo assets in /public)
 - Maintain fast build times with Vite
 
-### SEO & Accessibility
-- React Helmet Async for meta tags management
-- Semantic HTML structure
-- Proper heading hierarchy (h1 → h2 → h3)
+### SEO Implementation
+- **React Helmet Async**: HelmetProvider wrapper in `main.jsx`
+- **Dynamic SEO Component**: `src/components/ui/SEO.jsx` handles meta tags for all pages
+- **Route-based SEO**: App.jsx detects current route and provides appropriate SEO data
+- **JSON-LD Schemas**: Structured data in `src/data/jsonLdSchemas.js`
+  - WebApplication schema (homepage)
+  - Organization schema (site-wide)
+  - Article schema (per-guide pages)
+- **Open Graph**: Full OG meta tags for social sharing (Facebook, LinkedIn)
+- **Twitter Cards**: Summary cards with images
+- **Canonical URLs**: Dynamic based on route
+
+### Accessibility
+- Semantic HTML structure with proper heading hierarchy (h1 → h2 → h3)
 - Alt text for images and meaningful link text
+- Dark mode with proper contrast ratios
+- Error boundaries prevent complete app crashes
 
 ## Code Quality Standards
 
@@ -242,18 +289,17 @@ See **TODO.md** for the complete prioritized task list with detailed implementat
 
 **Recently Completed**:
 - ✅ Toast System Bug Fix (inline `<style jsx>` moved to index.css)
-- ✅ Error Boundaries (added to prevent app crashes)
+- ✅ Error Boundaries (ErrorBoundary component wrapping critical sections)
 - ✅ Form Validation (custom validation with error feedback in ContactForm)
+- ✅ SEO Meta Tags (SEO component with Open Graph, Twitter Cards, JSON-LD schemas)
+- ✅ Code Splitting (GuideViewer and ContactForm are lazy loaded)
+- ✅ React Router Migration (from conditional rendering to proper routing)
 
-**Current Focus**:
-- SEO Meta Tags (Open Graph, Twitter Cards, JSON-LD schemas)
-- Scroll Behavior optimization (refactor nested setTimeout)
-- Code splitting for GuideViewer and ContactForm
-
-**Future Priorities**:
+**Future Priorities** (see TODO.md for details):
 - Testing setup (Vitest + React Testing Library)
 - EmailJS rate limiting (prevent spam)
+- Scroll Behavior optimization (refactor nested setTimeout in Header)
 - Accessibility improvements (ARIA, focus management)
 - Image optimization (WebP format, lazy loading)
 
-Refer to TODO.md for time estimates and detailed code examples for each task.
+Refer to **TODO.md** for time estimates and detailed code examples for each task.
